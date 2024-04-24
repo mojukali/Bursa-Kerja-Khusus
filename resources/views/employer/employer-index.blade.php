@@ -38,7 +38,7 @@
 <div class="container">
       <div class="row m-l-0 m-r-0">
             <!-- INFORMATION -->
-            <div class="col grid">
+            <div class="col-6 grid">
                 <div class="card-block">
                     <h3 class="text-center fw-bold">{{$dataE->name}}</h3>
                     <h6 class="m-b-20 p-b-5 b-b-default f-w-600">Information</h6>
@@ -62,6 +62,13 @@
                             <h6 class="text-muted f-w-400">Bergabung pada tanggal {{$dataE->created_at->format('d/m/Y')}}</h6>
                         </div>
                     </div>
+                    <div class="row mb-3 mt-2 ">
+                        <div class="col d-flex justify-content-center">
+                              <div>
+                                    <a class="btn btn-dark px-5 fw-semibold" href="{{ route('employe.new-loker', ['id' => $dataE->id]) }}" style="font-size: 12px" role="button">BUAT LOKER</a>
+                              </div>
+                        </div>
+                  </div>
                     <hr>
                     <div class="row">
                     <div class="fw-bolder mb-4 text-center text-secondary rounded p-2">TENTANG PERUSAHAAN</div>
@@ -72,28 +79,33 @@
                 </div>
             </div>
 
-            <!-- LOKER --> 
-            @foreach ($dataE->loker as $item)
-            <div class="col mt-3 mb-3">
+            <!-- LOKER -->
+         <div class="col-6 mt-3 mb-3">
             <h3 class="text-center fw-bold mt-1 mb-5">LOKER TERSEDIA</h3>
-                  <div class="card w-full border border-2" style="font-size: 14px">
-                        <div class="card-body">
-                              <div class="row">
-                                    <div class="col-9">
-                                          <div class="fw-bolder"><a href="{{ route('employe.detail-loker', ['id' =>$item->id])}}" class="link-offset-2 link-underline link-underline-opacity-0 link-underline-opacity-100-hover link-dark">{{$item->nama_pekerjaan}}</a></div>
+            <div class="row">
+                  <div class="col">
+                        @foreach ($dataE->loker as $item)
+                        <div class="card w-full border border-2" style="font-size: 14px">
+                              <div class="card-body">
+                                    <div class="row">
+                                          <div class="col-9">
+                                                <div class="fw-bolder">{{$item->nama_pekerjaan}}
+                                                </div>
+                                          </div>
+                                          <div class="col">
+                                                <div class="text-end text-primary text-end fw-bolder">{{$item->status}}</div>
+                                          </div>
                                     </div>
-                                    <div class="col">
-                                          <div class="text-end text-primary text-end fw-bolder">{{$item->status}}</div>
-                                    </div>
+                                    <div class="text-secondary mt-2">{{$item->bagian}}</div>
                               </div>
-                              <div class="text-secondary mt-2">{{$item->bagian}}</div>
+                              <div class="card-footer text-center text-secondary">
+                              <a href="{{ route('employe.detail-loker', ['id' =>$item->id])}}" class="btn btn-success text-white fw-bold link-offset-2 link-underline link-underline-opacity-0 link-underline-opacity-100-hover link-dark">Klik Disini</a>
+                              </div>
                         </div>
-                        <div class="card-footer text-center text-secondary">
-                              12 Kandidat
-                        </div>      
+                        @endforeach
                   </div>
             </div>
-            @endforeach
+         </div>    
       </div>
       @include('partials.footer')
 </div>

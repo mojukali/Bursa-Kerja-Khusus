@@ -112,7 +112,7 @@
                   </div>
                   <ul class="list-group list-group-flush">
                         <li class="list-group-item">
-                        <li class="list-group-item"><i class="bi bi-geo-alt-fill"></i> {{$item->kota_kabupaten}},{{$item->provinsi}}</li>
+                        <li class="list-group-item text-truncate"><i class="bi bi-geo-alt-fill"></i> {{$item->kota_kabupaten}},{{$item->provinsi}}</li>
                         <li class="list-group-item">
                         @php
                         $gajiF = $item->gaji;
