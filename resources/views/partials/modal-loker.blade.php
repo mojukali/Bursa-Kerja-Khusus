@@ -33,7 +33,7 @@
                               Kirim Lamaran
                         </a>
                         @else
-                        <a type="button" href="{{ route('user.user-apply', ['id' =>$item->id])}}" class="btn btn-apply-loker px-5">
+                        <a type="button" href="{{ route('user.user-apply', ['id' =>$item->id])}}" class="btn btn-success d-grid col-6 mx-auto mb-3">
                               Kirim Lamaran
                         </a>
                         @endguest

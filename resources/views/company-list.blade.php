@@ -20,8 +20,6 @@
                   <div class="card" style="width: 18rem;">
                         @if ($item->image)
                         <img class="w-100" src="{{ asset('storage/photo-employe/'.$item->image)}}" alt="">
-                        @else
-                        <div class="d-flex align-items-center justify-content-center fw-semibold fs-1" style="">{{ $firstChar = str($item->name)->substr(0, 1); }}</div>
                         @endif
                         <div class="card-body">
                               <h5 class="card-title text-center text-truncate">{{$item->name}}</h5>
@@ -42,12 +40,12 @@
                         @if ($item->image)
                         <img class="w-100" src="{{ asset('storage/photo-employe/'.$item->image)}}" alt="">
                         @else
-                        <div class="d-flex align-items-center justify-content-center fw-semibold fs-1" style="">{{ $firstChar = str($item->name)->substr(0, 1); }}</div>
+                        <div class="d-flex align-items-center justify-content-center fw-semibold fs-1" style=""><i class="bi bi-building"></i></div>
                         @endif
                         <div class="card-body">
-                              <h5 class="card-title text-center">{{$item->name}}</h5>
-                              <hr class="">
-                              <p class="card-text">{{$item->deskripsi}}</p>
+                              <h5 class="card-title text-center text-truncate">{{$item->name}}</h5>
+                              <hr>
+                              <p class="card-text text-truncate">{{$item->deskripsi}}</p>
                         </div>
                         <ul class="list-group list-group-flush">
                               <li class="list-group-item"><i class="bi bi-geo-alt-fill"></i> {{$item->lokasi}}</li>

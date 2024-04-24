@@ -13,7 +13,7 @@
       <div class="col-12 col-lg-6 col-xl-7">
         <div class="row justify-content-xl-center">
           <div class="col-12 col-xl-11">
-            <h2 class="mb-3">Tak Kenal Maka Tak Sayang!!!</h2>
+            <h2 class="mb-3">AyoKerja!!!</h2>
             <p class="lead fs-4 text-secondary mb-3">AyoKerja adalah platform online yang menyediakan informasi dan peluang kerja bagi para Alumni SMKN 4 KOTA TANGERANG.</p>
             <p class="mb-5">AyoKerja website Bursa Kerja Khusus SMKN 4 Kota Tangerang merupakan platform online yang disediakan oleh Sekolah Menengah Kejuruan Negeri 4 Kota Tangerang, yang bertujuan untuk memberikan informasi tentang peluang kerja para Alumni SMKN 4 KOTA TANGERANG.</p>
             <div class="row gy-4 gy-md-0 gx-xxl-5X">

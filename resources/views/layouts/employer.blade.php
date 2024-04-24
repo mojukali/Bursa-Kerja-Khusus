@@ -18,7 +18,7 @@
 <body>
       <nav class="navbar sticky-top shadow p-3 navbar-expand-lg">
             <div class="container">
-                  <a class="navbar-brand text-warning fw-bold me-5" href="/">J4bSeeker</a>
+                  <a class="navbar-brand text-warning fw-bold me-5" href="/">Ayo Kerja</a>
                   <button class="navbar-toggler text-light bg-light" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                         <span class="navbar-toggler-icon text-light"></span>
                   </button>

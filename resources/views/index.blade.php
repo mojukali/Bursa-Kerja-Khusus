@@ -118,8 +118,6 @@
                         $gajiF = $item->gaji;
                         @endphp
                         <i class="bi bi-cash-stack"></i> {{$gaji_terformat = number_format($gajiF, 0, ',', '.')}}</li>
-                        <li class="list-group-item"><i class="bi bi-briefcase-fill"></i> {{$item->bagian}}</li>
-                        <li class="list-group-item"><i class="bi bi-clock-fill"></i> {{$item->waktu}}</li>
                   </ul>
                   <div class="btn btn-success rounded-1" href=""
                         data-bs-toggle="modal"data-bs-target="#exampleModal{{$item->id}}">Klik Disini
