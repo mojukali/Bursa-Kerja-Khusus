@@ -1,0 +1,124 @@
+:root {
+  --primary: #070f2b;
+  --secondary: rgb(71, 71, 71);
+  --dark-blue: #1b1a55;
+  --smoke-white: rgb(231, 231, 231);
+  --light-blue: rgb(167, 164, 233);
+  --light-yellow: rgb(251, 255, 132);
+  --yellow: rgb(255, 238, 0);
+  --light-gray : rgb(244, 244, 244);
+  --light-red: rgb(254, 215, 215);
+}
+
+body{
+  font-family: "Roboto", sans-serif;
+}
+
+.dashboard-content{
+  display: flex;
+}
+
+.menu-sidebar{
+  font-size: 14px;
+}
+
+.kiri {
+  height: 100vh;
+  position: fixed;
+  width: 300px;
+}
+
+.nav-link-sidebar:hover {
+  background-color: var(--light-gray);
+  /* box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); */
+}
+
+.sidebar-admin-logout:hover{
+  background-color: var(--light-red);
+}
+
+#colorLink.clicked {
+  background-color: #e3edff; /* Warna setelah diklik */
+}
+
+.nav-link-sidebar,
+.nav-link-sidebar i {
+  font-size: 18px;
+  letter-spacing: 0.3px;
+}
+
+.nav-link-sidebar i {
+  color: rgb(64, 64, 234);
+}
+.hr {
+  margin: 0;
+  border-top: 2px solid #f1f1f1;
+}
+
+.box {
+  border: 0.2px solid rgb(232, 232, 232);
+  width: 250px;
+  height: 100px;
+}
+
+.box:hover{
+  background-color: var(--light-yellow)!important;
+}
+
+.box p {
+  font-weight: 700;
+  color:var(--primary);
+}
+
+.total {
+  margin-left: 10rem;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: var(--primary);
+  
+}
+
+.total p {
+  color: var(--yellow);
+  font-weight: 600;
+  padding-top: 9px;
+}
+
+.box i {
+  color: var(--primary);
+}
+
+.title-form p {
+  font-size: 18px;
+  color: rgb(64, 64, 234);
+  font-weight: 700;
+  padding-top: 10px;
+}
+
+.title-form {
+  background-color: #e3edff;
+  width: 300px;
+  height: 50px;
+}
+
+.card-header {
+  background-color: var(--primary) !important;
+  font-weight: 600;
+  color: #e3edff;
+}
+
+.btn-simpan {
+  background-color: rgb(64, 64, 234) !important;
+  color: #e3edff !important;
+}
+
+.btn-reset {
+  background-color: #e3edff !important;
+  color: rgb(64, 64, 234) !important;
+}
+
+.delete-btn:focus {
+  background-color: rgb(223, 11, 11) !important;
+  color: white !important;
+}
