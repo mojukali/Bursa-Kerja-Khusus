@@ -6,7 +6,11 @@ use App\Models\Apply;
 use App\Models\Employe;
 use App\Models\Jurusan;
 use App\Models\loker;
+use App\Models\User;
+use App\Models\profileUser;
+use App\Models\Status;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 
@@ -69,29 +73,39 @@ class EmployeController extends Controller
             $data['requirement']            = $request->requirement;
 
             Loker::create($data);
-            return redirect()->route('employe.employe')->with('success', 'Registrasi berhasil. Silakan masuk.');
+            return redirect()->route('employe.employe')->with('success', 'Loker berhasil dibuat!');
+            // return redirect()->route('employe.employe')->with('success', 'Registrasi berhasil. Silakan masuk.');
     }
 
     public function detail_loker(Request $request, $id){
 
         $data = Loker::find($id);
-        $ganjil = Loker::whereRaw('id % 2 != 0')->get();
-        $genap = Loker::whereRaw('id % 2 = 0')->get();
-        return view('employer.employer-detail-loker',compact('data'));
-        return view('user.apply',compact('data'));
+        $ex = 9;
+        $lokerId = Loker::find($id);
+        $applyId = Apply::find($id);
+
+        $showUsers = User::select('users.name', 'profile_user.*')
+        ->join('apply', 'users.id', '=', 'apply.user_id')
+        ->join('profile_user', 'users.id', '=', 'profile_user.user_id')
+        ->where('apply.loker_id', $applyId)
+        ->distinct()
+            ->get();
+        
+        return view('employer.employer-detail-loker',compact('data', 'showUsers', 'applyId','lokerId'));
     }
 
     public function delete(Request $request, $id){
         $data = Loker::find($id);
-
+        $title = 'Delete User!';
+        $text = "Are you sure you want to delete?";
+        confirmDelete($title, $text);
         if($data){
             $data->delete();
-            return redirect()->route('employe.employe')->with('successdel' ,'oke');
+            return redirect()->route('employe.employe')->with('success' ,'loker berhasil dihapus!');
         }
     }
 
     public function photo_profile(Request $request, $id){
-
         $photo      = $request->file('photo');
         $filename   = date('y-m-d').$photo->getClientOriginalName();
         $path       ='photo-employe/'.$filename;
@@ -103,6 +117,84 @@ class EmployeController extends Controller
         Employe::where('id', $id)->update($data);
         return redirect()->back();
     }
+
+    public function candidat(Request $request, $id){
+        $user = User::find($id);
+        $lokerId = Loker::find($id);
+        $applyId = Apply::find($id);
+        
+        $userData = User::select('users.name', 'profile_user.*')
+                    ->join('apply', 'users.id', '=', 'apply.user_id')
+                    ->join('profile_user', 'users.id', '=', 'profile_user.user_id')
+                    ->where('apply.id', $applyId)
+                    ->first();
+                    
+    return view('employer.employer-candidat', compact('lokerId','applyId','userData'));
+    }
+
+    public function interview(Request $request,$id){
+        $surat      = $request->file('surat_interview');
+        $filename   = date('y-m-d').$surat->getClientOriginalName();
+        $path       ='surat-interview/'.$filename;
+
+        Storage::disk('public')->put($path,file_get_contents($surat));
+
+        $data = [
+            'status'            => $request->status,
+            'surat_interview'    => $filename,
+        ];
+
+        Apply::where('id', $id)->update($data);
+        return redirect()->back();
+    }
+
+    public function download_cv($id){
+        $apply = Apply::find($id);
+        $fileName = $apply->cv;
+        
+        $pathToFile = public_path("storage/cv-portofolio/$fileName");
+        
+        if (file_exists($pathToFile)) {
+            return \response()->download($pathToFile);
+        } else {
+            // Jika file tidak ditemukan, kembalikan respons dengan pesan kesalahan
+            return redirect()->back()->with('error', 'File CV tidak ditemukan.');
+        }
+    }
+
+
+    public function download_portofolio($id){
+        $apply = Apply::find($id);
+        $fileName = $apply->portofolio;
+        
+        $pathToFile = public_path("storage/cv-portofolio/$fileName");
+        
+        if (file_exists($pathToFile)) {
+            return \response()->download($pathToFile);
+        } else {
+            // Jika file tidak ditemukan, kembalikan respons dengan pesan kesalahan
+            return redirect()->back()->with('error', 'File Portofolio tidak ditemukan.');
+        }
+    }
+
+    public function update_candidat(Request $request, $id){
+        $verivikasi     = 0;
+        $data['status'] = $verivikasi;
+
+        Apply::where('id', $id)->update($data);
+
+        return redirect()->back();
+    }
+
+    public function rejected(Request $request, $id){
+        $data['status'] = $request->status;
+
+        Apply::where('id', $id)->update($data);
+
+        return redirect()->back();
+    }
+    
+    
 
     
 }

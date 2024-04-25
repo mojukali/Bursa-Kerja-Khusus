@@ -21,6 +21,7 @@ class Apply extends Model
     ];
     
     protected $table = 'apply';
+    
 
     public function loker()
     {

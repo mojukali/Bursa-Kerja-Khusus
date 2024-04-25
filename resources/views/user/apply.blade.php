@@ -24,6 +24,11 @@
                                           </div>
                                     </div>
                                     <div>
+                                          @if (now()->toDateString() > $loker->expired)
+                                          <div class="d-flex gap-3">
+                                                <button type="button" disabled class="btn btn-secondary rounded-pill d-flex gap-1 align-items-center justify-content-center fw-medium" style="width: 120px">Ditutup</button>
+                                          </div>
+                                          @else
                                           @if ($existingApplication)
                                           <div class="d-flex gap-3">
                                                 <button type="button" disabled class="btn btn-dark rounded-pill d-flex gap-1 align-items-center justify-content-center fw-medium" style="width: 120px">Applied<i class="bi bi-check-lg"></i></button>
@@ -31,10 +36,11 @@
                                           @else
                                           <button type="button" class="btn btn-dark rounded-pill d-flex gap-1 align-items-center justify-content-center fw-medium" data-bs-toggle="modal" data-bs-target="#modalapply1" style="width: 120px">Apply<i class="bi bi-box-arrow-in-up-right"></i></button>
                                           @endif
+                                          @endif
                                           <div class="modal fade" id="modalapply1" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                                 <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-lg">
                                                       <div class="modal-content">
-                                                            <form action="{{route('user.apply-loker',['id' => $loker->id])}}" method="POST" class="needs-validation" novalidate>
+                                                            <form action="{{route('user.apply-loker',['id' => $loker->id])}}" method="POST" enctype="multipart/form-data" class="needs-validation" novalidate>
                                                                   @csrf
                                                                   <div class="modal-header px-5">
                                                                         <h1 class="modal-title fs-5" id="exampleModalLabel">Apply at {{$loker->nama_perusahaan}}</h1>
@@ -79,6 +85,7 @@
                                                                                           <input type="hidden" name="user_id" class="form-control" id="validationCustom01" placeholder="" value="{{$dataU->id}}" required>
                                                                                           <input type="hidden" name="employe_id" class="form-control" id="validationCustom01" placeholder="" value="{{$loker->employe_id}}" required>
                                                                                           <input type="hidden" name="loker_id" class="form-control" id="validationCustom01" placeholder="" value="{{$loker->id}}" required>
+                                                                                          <input type="hidden" name="status" class="form-control" id="validationCustom01" placeholder="" value="0" required>
                                                                                           <label for="validationCustom01" class="form-label text-secondary">Email address</label>
                                                                                           <input type="email" name="email" class="form-control" id="validationCustom01" placeholder="" value="{{$dataU->profile_user->email}}" style="font-size: 14px" required>
                                                                                           <div class="valid-feedback">
@@ -89,7 +96,7 @@
                                                                               <div class="col-xl-6 col-md-6 col-sm-12">
                                                                                     <div class="mb-3">
                                                                                           <label for="validationCustom02" class="form-label text-secondary">Phone Number</label>
-                                                                                          <input type="text" class="form-control" id="validationCustom02" name="no_telp" placeholder="isi no telephone anda di profile user" value="{{$dataU->profile_user->no_telp}}" readonly required>
+                                                                                          <input type="text" class="form-control" id="validationCustom02" name="no_telp" placeholder="isi no telephone anda di profile user" value="{{$dataU->profile_user->no_telp}}" style="font-size: 14px" readonly required>
                                                                                           <div class="valid-feedback">
                                                                                                 Looks good!
                                                                                           </div>
@@ -114,7 +121,7 @@
                                                                                     <div class="mb-3">
                                                                                           <div class="input-group flex-nowrap">
                                                                                                 <span class="input-group-text" id="addon-wrapping">url</span>
-                                                                                                <input type="url" name="portofolio_online" class="form-control" aria-label="portfolio" aria-describedby="addon-wrapping" style="font-size: 14px">
+                                                                                                <input type="url" name="porto" class="form-control" aria-label="portfolio" aria-describedby="addon-wrapping" style="font-size: 14px">
                                                                                           </div>
                                                                                     </div>
                                                                               </div>
@@ -173,7 +180,7 @@
                                                       </div>
                                                 </div>
                                                 <div class="mt-4 d-flex gap-2 align-items-center">
-                                                      <div class="text-secondary fw-light" style="font-size: 12px">Di buat pada {{$item->created_at}}</div>
+                                                      <div class="text-secondary fw-light" style="font-size: 12px">Di buat pada {{ \Carbon\Carbon::parse($item->created_at)->format('d/m/Y') }}</div>
                                                 </div>
                                           </div>
                                     </div>

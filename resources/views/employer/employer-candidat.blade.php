@@ -1,6 +1,6 @@
 @extends('layouts.dashboard-employer')
 
-@include('partials.navbar-dashboard-admin')
+
 
 @section('nav-link-employer')
 <button class="navbar-toggler text-light bg-light" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -9,39 +9,68 @@
 <div class="collapse navbar-collapse w-full d-flex ms-5" id="navbarNav">
       <ul class="navbar-nav d-flex gap-3">
             <li class="nav-item">
-                  <a class="nav-link active text-light" aria-current="page" href="/employe/index">HOME</a>
+                  <a class="nav-link active text-light" aria-current="page" href="{{ route('employe.employe')}}">HOME</a>
             </li>
             <li class="nav-item">
-                  <a class="nav-link active text-light" aria-current="page" href="/employe/dashboard-employe">DASHBOARD</a>
+                  <a class="nav-link active text-light" aria-current="page" href="{{ route('employe.dashboard-employe')}}">DASHBOARD</a>
             </li>
       </ul>
 </div>
 @endsection
+@include('partials.navbar-dashboard-admin')
+
+
+
 
 @section('content-admin')
 
 <body class="bg-body-tertiary">
       <div class="container pt-5">
             <div class="row">
-                  <div class="col-8">
+                  <div class="col-xl-8 col-md-12 col-sm-12">
                         <div class="card bg-white mb-3">
                               <div class="card-body ps-4">
                                     <div class="d-flex gap-4">
                                           <div>
-                                                <img src="../../../img/bg_iu.jpg" alt="" class="rounded-pill ratio ratio-1x1 img-profile-user">
+                                                @if ($dataU->profile_user->image)
+                                                <a href="" data-bs-toggle="modal" data-bs-target="#detailphoto">
+                                                      <img src="{{ asset('storage/photo-user/'.$dataU->profile_user->image)}}" alt="" class="rounded-pill ratio ratio-1x1 img-profile-user">
+                                                </a>
+                                                @else
+                                                @if ($dataU->profile_user->jk === 'she/her')
+                                                <a href="" data-bs-toggle="modal" data-bs-target="#detailphoto">
+                                                      <img src="{{ asset('../../img/person-default-female.jpg')}}" alt="" class="rounded-pill ratio ratio-1x1 img-profile-user">
+                                                </a>
+                                                @else
+                                                <a href="" data-bs-toggle="modal" data-bs-target="#detailphoto">
+                                                      <img src="{{ asset('../../img/person-default.jpg')}}" alt="" class="rounded-pill ratio ratio-1x1 img-profile-user">
+                                                </a>
+                                                @endif
+                                                @endif
                                           </div>
                                           <div>
                                                 <div class="d-flex gap-2 align-items-center">
-                                                      <div class="fw-semibold text-black fs-5">Muhammad Kafi Pratama</div>
-                                                      <div class="fw-light text-secondary" style="font-size: 12px">(He/Him)</div>
+                                                      <div class="fw-semibold text-black" style="font-size: 16px">{{$dataU->name}}</div>
+                                                      <div class="fw-light text-secondary" style="font-size: 12px">({{$dataU->profile_user->jk}})</div>
                                                 </div>
-                                                <div class="text-secondary">Jakarta Barat, Jakarta</div>
+                                                <div class="text-secondary" id="myText" style="font-size: 13px"> {{$dataU->profile_user->kota}}, {{$dataU->profile_user->provinsi}}</div>
                                                 <div class="mt-2 text-secondary" style="font-size: 13px">
-                                                      <div class="d-flex gap-3">
-                                                            <i class="bi bi-envelope-at"></i>kafipratama1512@gmail.com
-                                                      </div>
-                                                      <div class="d-flex gap-3">
-                                                            <i class="bi bi-telephone"></i>0813-7414-0161
+                                                      <div class="mt-2 text-secondary" style="font-size: 13px">
+                                                            <div class="d-flex gap-3 align-items-center">
+                                                                  <i class="bi bi-envelope"></i>
+                                                                  <div class="d-flex gap-1 align-items-center">
+                                                                        <div id="text-to-copy-email">{{$dataU->profile_user->email}}</div>
+                                                                        <a id="copy-link-email" class="email text-secondary" href="#"><i class="bi bi-clipboard"></i></a>
+                                                                  </div>
+                                                            </div>
+                                                            <div class="d-flex gap-3 align-items-center">
+                                                                  <i class="bi bi-telephone"></i>
+                                                                  <div class="d-flex gap-1 align-items-center">
+                                                                        <div id="text-to-copy" hidden>{{$dataU->profile_user->no_telp}}</div>
+                                                                        <div>{{$formattedPhoneNumber = implode('-', str_split($dataU->profile_user->no_telp, 4))}}</div>
+                                                                        <a id="copy-link" class="text-secondary" href="#"><i class="bi bi-clipboard"></i></a>
+                                                                  </div>
+                                                            </div>
                                                       </div>
                                                 </div>
                                           </div>
@@ -54,7 +83,7 @@
                                           <div class="fw-semibold mb-3">About</div>
                                     </div>
                                     <div style="font-size: 14px">
-                                          <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quae ut aspernatur consequuntur recusandae quasi doloremque sunt, libero minima odio eligendi maiores, quos optio mollitia dignissimos sint nisi illum! Distinctio doloribus, eveniet vel provident odit earum, necessitatibus qui sapiente voluptates ipsam itaque doloremque nemo nihil magni in? Est a ipsam accusantium deserunt, harum et cupiditate enim eveniet voluptate quos! Sint reprehenderit voluptas cupiditate est officiis illum quia debitis labore rem quas nulla minima, animi atque quisquam distinctio voluptate perspiciatis! Dicta eveniet voluptatibus ad rem assumenda est perspiciatis voluptatum, ullam omnis porro? Architecto, quis minima debitis perferendis itaque incidunt non fuga qui quo explicabo ad laudantium sapiente natus distinctio quae, consequatur officiis ipsum pariatur? Ullam vitae impedit error debitis maxime! Atque magnam tenetur laudantium totam hic, numquam, deserunt illum iure doloremque deleniti iste, modi explicabo aut architecto repudiandae dolores reprehenderit nesciunt quidem eius odit itaque harum? Distinctio deleniti labore numquam beatae illum!</p>
+                                          <p>{!! nl2br(e($dataU->profile_user->about)) !!}</p>
                                     </div>
                               </div>
                         </div>
@@ -63,30 +92,73 @@
                                     <div class="d-flex gap-2 mb-3 align-items-center">
                                           <div class="fw-semibold">Education</div>
                                     </div>
+                                    @foreach ($dataU->education as $item)
                                     <div class="mb-2">
-                                          <div class="fw-semibold" style="font-size: 14px">SMKN 4 Tangerang</div>
-                                          <div class="fw-normal text-secondary" style="font-size: 14px">Rekayasa Perangkat Lunak</div>
-                                          <div class="fw-light text-secondary" style="font-size: 12px">2020 - 2025</div>
+                                          <div class="fw-semibold" style="font-size: 14px">{{$item->nama_sekolah}}</div>
+                                          <div class="fw-normal text-secondary" style="font-size: 14px">{{$item->jurusan}}</div>
+                                          <div class="fw-light text-secondary" style="font-size: 12px">{{$item->tahun}}</div>
                                     </div>
-                                    <div class="mb-2">
-                                          <div class="d-flex gap-2 align-items-center">
-                                                <div class="fw-semibold" style="font-size: 14px">Universitas Indonesia</div>
-                                          </div>
-                                          <div class="fw-normal text-secondary" style="font-size: 14px">Ilmu Komunikasi</div>
-                                          <div class="fw-light text-secondary" style="font-size: 12px">2025 - 2029</div>
-                                    </div>
+                                    @endforeach
                               </div>
                         </div>
                   </div>
-                  <div class="col-4">
-                        <div class="card">
+                  
+                  <div class="col-xl-4 col-md-12 col-sm-12">
+                        <div class="card mb-3">
                               <div class="card-body">
-                                    <div>Resume</div>
-
+                                    <div class="fw-semibold mb-3">Skills</div>
+                                    <div style="font-size: 13px">
+                                          <div class="d-flex gap-2 mb-2">
+                                                <div class="fw-medium" style="width: 70px">Softskill</div>
+                                                <div>:</div>
+                                                <div class="text-secondary">
+                                                      @foreach ($dataU->softskill as $key => $item)
+                                                      {{$item->skill}}
+                                                      @if (!$loop->last)
+                                                      ,
+                                                      @endif
+                                                      @endforeach
+                                                </div>
+                                          </div>
+                                          <div class="d-flex gap-2">
+                                                <div class="fw-medium" style="width: 70px">Hardskills</div>
+                                                <div>:</div>
+                                                <div class="text-secondary">
+                                                      @foreach ($dataU->hardskill as $key => $item)
+                                                      {{$item->skill}}
+                                                      @if (!$loop->last)
+                                                      ,
+                                                      @endif
+                                                      @endforeach
+                                                </div>
+                                          </div>
+                                    </div>
+                              </div>
+                        </div>
+                        <div class="card mb-3">
+                              <div class="card-body">
+                                    <div class="mb-2">Experience</div>
+                                    <div>
+                                          @foreach ($dataU->experiences as $exp)
+                                          <div class="mb-3">
+                                                <div class="d-flex gap-2 align-items-center">
+                                                      <div class="fw-semibold" style="font-size: 14px">{{$exp->nama_perusahaan}}</div>
+                                                </div>
+                                                <div class="d-flex gap-2 align-items-center">
+                                                      <div class="fw-normal text-secondary" style="font-size: 14px">{{$exp->nama_pekerjaan}}</div>
+                                                      <div class="fw-light text-secondary" style="font-size: 12px">{{$exp->status}}</div>
+                                                </div>
+                                                <div class="fw-light text-secondary" style="font-size: 12px">{{$exp->lama_bekerja}}</div>
+                                                <div class="fw-light text-secondary mt-3" style="font-size: 12px">{{$exp->deskripsi}}</div>
+                                          </div>
+                                          @endforeach
+                                    </div>
                               </div>
                         </div>
                   </div>
             </div>
+            <div id="copy-feedback-email">Email berhasil disalin!</div>
+            <div id="copy-feedback">No telephone berhasil disalin!</div>
       </div>
 </body>
 

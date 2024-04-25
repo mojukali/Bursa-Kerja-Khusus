@@ -23,6 +23,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', [LoginController::class, 'index'])->name('login');
+Route::get('/search', [UserController::class, 'search'])->name('search');
 
 
 Route::get('/company-list', [UserController::class, 'company_list'])->name('company-list');
@@ -88,14 +89,21 @@ Route::group(['prefix' => 'user', 'middleware' => ['auth'], 'as' => 'user.'], fu
 Route::group(['prefix' => 'view','middleware' => ['auth:employe'], 'as' => 'employe.'], function(){
     Route::get('/home-employe', [HomeController::class, 'employe_login'])->name('employe');
     Route::get('/edit-employe', [HomeController::class, 'employerEditProfile'])->name('edit-employe');
-    Route::put('/update/{id}',[HomeController::class,'update'])->name('update-profile');
     Route::get('/dashboard-employe', [HomeController::class, 'dashboard_employe'])->name('dashboard-employe');
     Route::get('/detail-loker/{id}', [EmployeController::class, 'detail_loker'])->name('detail-loker');
     Route::get('/loker/{id}', [EmployeController::class, 'loker'])->name('loker');
-    Route::get('/employe/{id}/new-loker', [EmployeController::class, 'new_loker'])->name('new-loker');
+    Route::get('/new-loker/{id}', [EmployeController::class, 'new_loker'])->name('new-loker');
+    Route::get('/download-cv/{id}', [EmployeController::class, 'download_cv'])->name('download-cv');
+    Route::get('/download-portofolio/{id}', [EmployeController::class, 'download_portofolio'])->name('download-portofolio');
+    Route::get('/show-applicant/{id}', [ApplyController::class, 'show_applicant'])->name('show-applicant');
+    // Route::get('/view/{lokerId}/{applyId}', [EmployeController::class, 'candidat'])->name('candidat');
     Route::post('/create-new-loker', [EmployeController::class, 'create_loker'])->name('create-new-loker');
-    Route::delete('/delete/{id}',[EmployeController::class,'delete'])->name('delete');
+    Route::put('/interview/{id}',[EmployeController::class,'interview'])->name('interview');
+    Route::put('/update/{id}',[HomeController::class,'update'])->name('update-profile');
     Route::put('photo-profile/{id}',[EmployeController::class,'photo_profile'])->name('photo-profile');
+    Route::put('/update-candidat/{id}',[EmployeController::class,'update_candidat'])->name('update-candidat');
+    Route::put('/rejected/{id}',[EmployeController::class,'rejected'])->name('rejected');
+    Route::delete('/delete/{id}',[EmployeController::class,'delete'])->name('delete');
 });
 
 
@@ -117,6 +125,10 @@ Route::get('/user/profile', function () {
 
 Route::get('/profile-perusahaan', function () {
     return view('employer/profile-perusahaan');
+});
+
+Route::get('view/kode-apply', function () {
+    return view('employer/employer-candidat');
 });
 
 Route::get('/perusahaan-list', function () {

@@ -255,9 +255,14 @@
                                     </div>
                                     @foreach ($dataU->education as $item)
                                     <div class="mb-2">
-                                          <div class="d-flex gap-2">
+                                          <div class="d-flex align-items-center gap-2">
                                                 <div class="fw-semibold" style="font-size: 14px">{{$item->nama_sekolah}}</div>
-                                                <a href="" class="profile-action-button" data-bs-toggle="modal" data-bs-target="#editEducation{{$item->id}}"><i class="bi bi-pen text-dark"></i></a>
+                                                <a href="" class="profile-action-button ms-auto" data-bs-toggle="modal" data-bs-target="#editEducation{{$item->id}}"><i class="bi bi-pen text-dark"></i></a>
+                                                <form action="{{ route('user.delete-education',['id' => $item->id])}}" method="POST">
+                                                      @csrf
+                                                      @method("DELETE")
+                                                      <button class="text-danger bg-transparent border-0" type="submit" class=""><i class="bi bi-trash"></i></button>
+                                                </form>
                                           </div>
                                           <div class="fw-normal text-secondary" style="font-size: 14px">{{$item->jurusan}}</div>
                                           <div class="fw-light text-secondary" style="font-size: 12px">{{$item->tahun}}</div>
@@ -286,11 +291,6 @@
                                                             </div>
                                                       </div>
                                                       <div class="modal-footer">
-                                                            <form action="{{ route('user.delete-education',['id' => $item->id])}}" method="POST">
-                                                                  @csrf
-                                                                  @method('DELETE')
-                                                                  <button type="submit" class="btn btn-danger">Delete</button>
-                                                            </form>
                                                             <button type="submit" class="btn btn-primary">Save changes</button>
                                                       </div>
                                                 </div>
@@ -319,11 +319,11 @@
                                                                   <input type="hidden" name="user_id" class="form-control" id="exampleFormControlInput1" placeholder="" value="{{$dataU->id}}">
                                                                   <div class="mb-3">
                                                                         <label for="exampleFormControlInput1" class="form-label">Nama Perusahaan</label>
-                                                                        <input type="text" name="nama_perusahaan" class="form-control" id="exampleFormControlInput1" placeholder="">
+                                                                        <input type="text" name="nama_perusahaan" class="form-control" id="exampleFormControlInput1" placeholder="Software Host">
                                                                   </div>
                                                                   <div class="mb-3">
                                                                         <label for="exampleFormControlInput1" class="form-label">Nama Pekerjaan</label>
-                                                                        <input type="text" name="nama_pekerjaan" class="form-control" id="exampleFormControlInput1" placeholder="">
+                                                                        <input type="text" name="nama_pekerjaan" class="form-control" id="exampleFormControlInput1" placeholder="Developer">
                                                                   </div>
                                                                   <div class="mb-3">
                                                                         <label for="exampleFormControlInput1" class="form-label">Status</label>
@@ -566,7 +566,7 @@
                   </div>
                   <div class="col-xl-4 col-md-12 col-sm-12">
                         <div>
-                              <div class="accordion overflow-auto w-100" id="accordionExample" style="max-height: 500px">
+                              <div class="accordion w-100" id="accordionExample">
                                     <div class="accordion-item">
                                           <h2 class="accordion-header">
                                                 <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
@@ -574,13 +574,27 @@
                                                 </button>
                                           </h2>
                                           <div id="collapseOne" class="accordion-collapse collapse show" data-bs-parent="#accordionExample">
-                                                <div class="accordion-body w-100">
+                                                <div class="accordion-body w-100 overflow-auto"  style="max-height: 550px">
                                                       @if ($history->isEmpty())
                                                       @include('svg.ilustration-history')
                                                       @else
+                                                      <div class="d-flex gap-2 align-items-center justify-content-center mb-3">
+                                                            <div class="d-flex gap-2 align-items-center">
+                                                                  <div class="bg-success p-2 rounded-circle"></div>
+                                                                  <div>Diterima</div>
+                                                            </div>
+                                                            <div class="d-flex gap-2 align-items-center">
+                                                                  <div class="bg-danger p-2 rounded-circle"></div>
+                                                                  <div>Ditolak</div>
+                                                            </div>
+                                                            <div class="d-flex gap-2 align-items-center">
+                                                                  <div class="bg-secondary p-2 rounded-circle"></div>
+                                                                  <div>Menunggu</div>
+                                                            </div>
+                                                      </div>
                                                       @foreach ($history as $item)
-                                                            <a href="{{route('user.user-apply',['id' => $item->loker->id])}}" class="position-relative w-100 link-dark link-offset-1 link-underline link-underline-opacity-0">
-                                                                  <div class="mb-2 border-bottom">
+                                                            <a href="{{route('user.user-apply',['id' => $item->id])}}" class="w-100 link-dark link-offset-1 link-underline link-underline-opacity-0">
+                                                                  <div class="card-history rounded pt-1 border-bottom">
                                                                         <div class="p-2">
                                                                               <div class="d-flex gap-3">
                                                                                     <div class="d-flex justify-content-center align-items-center">
@@ -591,20 +605,27 @@
                                                                                           @endif
                                                                                     </div>
                                                                                     <div class="w-100">
-                                                                                          <div class="d-flex align-items-center" style="font-size: 14px">
-                                                                                                <div class="fw-medium">{{$item->nama_perusahaan}}</div>
+                                                                                          <div class="d-flex align-items-center gap-2" style="font-size: 14px">
+                                                                                                @if ($item->status === '2')
+                                                                                                <div class="bg-success p-2 rounded-circle"></div>
+                                                                                                @elseif($item->status === '1')
+                                                                                                <div class="bg-danger p-2 rounded-circle"></div>
+                                                                                                @else
+                                                                                                <div class="bg-secondary p-2 rounded-circle"></div>
+                                                                                                @endif
+                                                                                                <div class="fw-medium">{{$item->nama_loker}}</div>
                                                                                                 <div class="ms-auto positon-absolute">
                                                                                                       <form action="{{route('user.delete-apply',['id' => $item->apply_id])}}" method="POST">
                                                                                                             @csrf
                                                                                                             @method('DELETE')
-                                                                                                            <button class="btn btn-cancel-apply z-4 positon-absolute" type="submit" style="font-size: 12px;">Batalkan</button>
+                                                                                                            <button class="btn btn-cancel-apply z-4 positon-absolute text-danger" type="submit" style="font-size: 12px;">Batalkan</button>
                                                                                                       </form>
                                                                                                 </div>
                                                                                           </div>
-                                                                                          <div style="font-size: 12px">{{$item->nama_loker}}</div>
+                                                                                          <div style="font-size: 12px">{{$item->nama_perusahaan}}</div>
                                                                                     </div>
                                                                               </div>
-                                                                              <div class="text-secondary fw-light text-end" style="font-size: 10px">{{$item->waktu}}</div>
+                                                                              <div class="text-secondary fw-light text-end" style="font-size: 10px">{{ \Carbon\Carbon::parse($item->waktu)->format('d/m/Y') }}</div>
                                                                         </div>
                                                                   </div>
                                                             </a>
@@ -617,7 +638,7 @@
                         </div>
                   </div>
             </div>
-            <div id="copy-feedback">No telp berhasil disalin!</div>
+            <div id="copy-feedback">No telephone berhasil disalin!</div>
             <div id="copy-feedback-email">Email berhasil disalin!</div>
       </div>
       <div class="modal fade" id="detailphoto" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">

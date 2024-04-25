@@ -5,9 +5,10 @@ namespace App\Http\Controllers;
 use App\Models\Employe;
 use App\Models\Jurusan;
 use App\Models\loker;
-use App\Models\Profile;
-use App\Models\User;
 use App\Models\Apply;
+use App\Models\Profile;
+use App\Models\Status;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
@@ -24,11 +25,14 @@ class HomeController extends Controller
             $dataE = Employe::withoutRole('employer')->get();
             $employe = Employe::role('employer')->count();
             $user = User::role('user')->count();
-            $apply = Apply::count();
             $loker = loker::count();
             
             $data = Loker::all();
             $dataU = User::role('user')->get();
+
+            $title = 'Delete User!';
+        $text = "Are you sure you want to delete?";
+        confirmDelete($title, $text);
 
             $role = Role::where('guard_name','employe')->get();
             return view('admin.dashboard-admin', compact('employE','employe','user','loker','data','dataU','dataE','role','chartUser'));
@@ -70,17 +74,45 @@ class HomeController extends Controller
 
     public function dashboard_employe(Request $request)
     {
-        $employeId = Auth::id();
-        $employE = Employe::where('id', $employeId)->first();
+        $employeId      = Auth::id();
+        $employE        = Employe::where('id', $employeId)->first();
+        $verivikasi     = 0;
+        $tolak          = 1;
+        $terima         = 2;
         $apply = Apply::select('users.name as user_name', 'lokers.bagian', 'lokers.nama_pekerjaan', 'apply.created_at', 'apply.id as id', 'apply.loker_id as loker_id', 'apply.employe_id as employe_id', 'apply.user_id as user_id', 'apply.cv as cv', 'apply.portofolio as portofolio', 'apply.portofolio_online as porto')
                 ->join('users', 'apply.user_id', '=', 'users.id')
                 ->join('lokers', 'apply.loker_id', '=', 'lokers.id')
                 ->where('apply.employe_id',$employeId)
+                ->where('apply.status',$verivikasi)
                 ->get();
 
+        $candidat = Apply::select('users.name as user_name', 'lokers.bagian', 'lokers.nama_pekerjaan', 'apply.created_at', 'apply.id as id', 'apply.loker_id as loker_id', 'lokers.nama_pekerjaan as job_name', 'lokers.bagian as job_position',)
+                ->join('users', 'apply.user_id', '=', 'users.id')
+                ->join('lokers', 'apply.loker_id', '=', 'lokers.id')
+                ->where('apply.employe_id',$employeId)
+                ->where('apply.status',$terima)
+                ->get();
+
+        $rejected= Apply::select('users.name as user_name', 'lokers.bagian', 'lokers.nama_pekerjaan', 'apply.created_at', 'apply.id as id', 'apply.loker_id as loker_id', 'lokers.nama_pekerjaan as job_name', 'lokers.bagian as job_position',)
+                ->join('users', 'apply.user_id', '=', 'users.id')
+                ->join('lokers', 'apply.loker_id', '=', 'lokers.id')
+                ->where('apply.employe_id',$employeId)
+                ->where('apply.status',$tolak)
+                ->get();
+
+
+
+
+
     
+        // $apply = Apply::select('users.name as user_name', 'lokers.id', 'lokers.nama_pekerjaan', 'apply.created_at')
+        //         ->join('users', 'apply.user_id', '=', 'users.id')
+        //         ->join('lokers', 'apply.loker_id', '=', 'lokers.id')
+        //         ->get();
+                // $lokerId = Loker::find($id);
+                // $jumlahPelamarLoker = Apply::where('loker_id', $lokerId)->count();
         // Tampilkan view untuk mengedit profil
-        return view('employer.employer-dashboard', compact('employE','apply'));
+        return view('employer.employer-dashboard', compact('employE','apply','candidat','rejected'));
     }
 
     public function update(Request $request, $id)

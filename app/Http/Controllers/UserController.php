@@ -12,12 +12,14 @@ use App\Models\loker;
 use App\Models\Profile;
 use App\Models\ProfileUser;
 use App\Models\SoftSkill;
+use App\Models\Status;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redis;
 use Illuminate\Support\Facades\Storage;
 use Spatie\Permission\Models\Role;
+// use Illuminate\Support\Facades\db_bkk;
 
 use function Laravel\Prompts\alert;
 
@@ -43,6 +45,8 @@ class UserController extends Controller
 
         return view('index',compact('data','loker','user','employe','dataU','jurusan'));
     }
+
+
     
     public function about(){
         $profile = Auth::id();
@@ -119,21 +123,37 @@ class UserController extends Controller
     }
 
     public function user_profile(Request $request, $id){
-        $data = Loker::find($id);
-        $dataU = User::find($id);
+        $data = loker::find($id);
         $loker = loker::find($id);
+        $apply = Apply::find($id);
+        $dataU = User::find($id);
         $dataU->load('profile_user');
         $dataU->load('education');
         $dataU->load('experiences');
         $dataU->load('softskill');
         $dataU->load('hardskill');
         $dataU->load('apply');
-        $history = Apply::select('apply.id as apply_id', 'employes.name as nama_perusahaan', 'employes.image as image', 'lokers.nama_pekerjaan as nama_loker', 'apply.created_at as waktu', 'lokers.id as loker_id')
-    ->join('users', 'apply.user_id', '=', 'users.id')
-    ->join('lokers', 'apply.loker_id', '=', 'lokers.id')
-    ->join('employes', 'lokers.employe_id', '=', 'employes.id')
-    ->where('users.nisn', $dataU->nisn)
-    ->get();
+        
+        $history = Apply::select('employes.name as nama_perusahaan', 'employes.image as image', 'lokers.nama_pekerjaan as nama_loker', 'apply.created_at as waktu', 'lokers.id as id', 'apply.id as apply_id','apply.status')
+        ->join('users', 'apply.user_id', '=', 'users.id')
+        ->join('lokers', 'apply.loker_id', '=', 'lokers.id')
+        ->join('employes', 'lokers.employe_id', '=', 'employes.id')
+        ->where('users.nisn', $dataU->nisn)
+        ->get();
+
+        $applyId = 78; // Ganti dengan ID apply tertentu yang Anda inginkan
+
+// $statuses = Status::select('statuses.id', 'apply.id as apply_id')
+//     ->join('apply', 'statuses.apply_id', '=', 'apply.id')
+//     ->where('apply.id', $applyId)
+//     ->get();
+
+    //     $history = Apply::select('apply.id as apply_id', 'employes.name as nama_perusahaan', 'employes.image as image', 'lokers.nama_pekerjaan as nama_loker', 'apply.created_at as waktu', 'lokers.id as loker_id')
+    // ->join('users', 'apply.user_id', '=', 'users.id')
+    // ->join('lokers', 'apply.loker_id', '=', 'lokers.id')
+    // ->join('employes', 'lokers.employe_id', '=', 'employes.id')
+    // ->where('users.nisn', $dataU->nisn)
+    // ->get();
 
     
         $user = User::role('user')->count();
@@ -182,10 +202,16 @@ class UserController extends Controller
     public function detail_loker(Request $request, $id){
 
         $data = Loker::find($id);
-        $ganjil = Loker::whereRaw('id % 2 != 0')->get();
-        $genap = Loker::whereRaw('id % 2 = 0')->get();
+        $applyId = Apply::find($id);
 
-        return view('admin.detail-loker',compact('data'));
+        $candidat = User::select('users.name', 'profile_user.*')
+        ->join('apply', 'users.id', '=', 'apply.user_id')
+        ->join('profile_user', 'users.id', '=', 'profile_user.user_id')
+        ->where('apply.loker_id', $applyId)
+        ->distinct()
+        ->get();
+
+        return view('admin.detail-loker',compact('data','candidat'));
     }
 
     public function update_education(Request $request, $id){
@@ -282,7 +308,7 @@ class UserController extends Controller
         $data['skill']    =$request->skill;
 
         SoftSkill::where('id',$id)->create($data);
-        return redirect()->back();
+        return redirect()->back()->with('Success', 'Softskill berhasil ditambahkan!');
     }
 
     public function delete_softskill($id){
