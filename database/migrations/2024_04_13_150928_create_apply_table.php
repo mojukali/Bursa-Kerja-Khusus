@@ -21,7 +21,9 @@ return new class extends Migration
             $table->foreignIdFor(loker::class)->constrained()->cascadeOnDelete();
             $table->string('cv');
             $table->string('portofolio')->nullable();
-            $table->string('portofolio_online',50)->nullable();
+            $table->string('portofolio_online',300)->nullable();
+            $table->string('status',3)->nullable();
+            $table->string('surat_interview',300);
             $table->timestamps();
         });
     }

@@ -63,6 +63,7 @@ class ApplyController extends Controller
             'portofolio'          => $filePortofolio,
             'portofolio_online'   => $request->porto,
         ];
+        
         $userId = Auth::id();
         $existingApplication = Apply::where('user_id', $userId)
                                 ->where('loker_id', $id)
@@ -135,7 +136,7 @@ class ApplyController extends Controller
         ->get();
 
 
-    
+        
     
         $user = Apply::where('user_id',$apply)->get();
         return view('employer.employer-candidat',compact('user','dataU'));
