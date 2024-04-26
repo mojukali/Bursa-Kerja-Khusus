@@ -19,58 +19,80 @@
       <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script> --}}
 </head>
 <body>
-      <nav class="navbar bg-dark sticky-top shadow-sm p-3 navbar-expand-lg stroke">
+      <nav class="navbar bg-dark shadow-sm p-3 navbar-expand-lg stroke">
             <div class="container">
-            <a class="navbar-brand fw-bold me-5" href="/" style="color: #8CB9BD;">Ayo Kerja</a>
-                  <div class="collapse navbar-collapse text-center" id="navbarNav">
-                        @guest      
-                        <ul class="navbar-nav d-flex gap-3">
-                              <li class="nav-item">
-                                    <a class="nav-link text-light" aria-current="page" href="/">LOWONGAN</a>
-                              </li>
-                              <li class="nav-item">
-                                    <a class="nav-link text-light" aria-current="page" href="{{ route('company-list')}}">PERUSAHAAN</a>
-                              </li>
-                              <li class="nav-item">
-                                    <a class="nav-link text-light" aria-current="page" href="{{route('about')}}">TENTANG</a>
-                              </li>
-                        </ul>
-                        @else
-                        <ul class="navbar-nav d-flex gap-3">
-                              <li class="nav-item">
-                                    <a class="nav-link text-light" aria-current="page" href="/user/dashboard">LOWONGAN</a>
-                              </li>
-                              <li class="nav-item">
-                                    <a class="nav-link text-light" aria-current="page" href="{{route('user.company-list')}}">PERUSAHAAN</a>
-                              </li>
-                              <li class="nav-item">
-                                    <a class="nav-link text-light" aria-current="page" href="{{route('user.about')}}">TENTANG</a>
-                              </li>
-                        </ul>
-                        @endguest
+                  <!-- NAVBAR NOT USER -->
+                  <div class="collapse navbar-collapse" id="navbarText">
+                        @guest
+                    <ul class="navbar-nav">
+                      <li class="nav-item">
+                        <a class="nav-link text-light" aria-current="page" href="/"
+                          >HOME</a
+                        >
+                      </li>
+                      <li class="nav-item">
+                        <a class="nav-link text-light" aria-current="page" href="{{ route('company-list')}}"
+                          >PERUSAHAAN</a
+                        >
+                      </li>
+                      <li class="nav-item">
+                      <a class="nav-link text-light" aria-current="page" href="{{route('about')}}">
+                        TENTANG</a
+                        >
+                      </li>
+                    </ul>
+                    <a class="navbar-brand fw-bold" href="/" style="color: #8CB9BD;">AyoKerja</a>
                         @guest
                         <form class="ms-auto d-flex justify-content-end" role="search">
                               <button class="btn btn-outline-light me-2 px-4 fw-bold" type="button" data-bs-toggle="modal" data-bs-target="#staticBackdrop" style="color:#8CB9BD; border: 2px solid; border-color: #8CB9BD;" id="liveToastBtn">
                                     Login
                               </button>
-                              <a href="{{ route('employer-site')}}" class="btn btn-outline-light me-2 fw-bolder" style="color:#8CB9BD; border: 2px solid; border-color: #8CB9BD;" type="button">
+                              <a href="{{ route('employer-site')}}" class="btn btn-outline-light me-2 fw-bold" style="color:#8CB9BD; border: 2px solid; border-color: #8CB9BD;" type="button">
                                     Employer
                               </a>
                         </form>
-                        @else
-                        <div class="ms-auto d-flex align-items-center justify-content-center gap-3">
-                              <div class="text-light">
-                                    <a href="{{ route('user.user-profile',['id' => $dataU->id]) }}" class="text-decoration-none text-light">
-                                    @auth
-                                    {{ Auth::user()->name }}
-                                    @endauth
-                              </a>
-                              </div>
-                              
-                        </div>
                         @endguest
-                        @yield('nav')
+                    @else
+                  <!-- NAVBAR USER -->
+                  <ul class="navbar-nav me-auto">
+                    <li class="nav-item">
+                      <a class="nav-link text-light" aria-current="page" href="/user/dashboard"
+                        >HOME</a
+                      >
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link text-light" aria-current="page" href="{{ route('user.company-list')}}"
+                        >PERUSAHAAN</a
+                      >
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link text-light" aria-current="page" href="{{route('user.about')}}"
+                        >TENTANG</a
+                      >
+                    </li>
+                  </ul>
+                  <div class="btn-group">
+                    <button class="btn btn-sm btn-secondary dropdown-toggle pe-4 ps-4 pt-2 pb-2 fw-bold" data-bs-toggle="dropdown"
+                      aria-expanded="false" style="border: 2px solid; border-color: #8CB9BD;" type="button">
+                        @auth
+                        {{ Auth::user()->name }}
+                        @endauth
+                    </button>
+                    <ul class="dropdown-menu">
+                      <li>
+                        <a class="dropdown-item fw-bold" href="{{ route('user.user-profile',['id' => $dataU->id]) }}"
+                          ><i class="bi bi-person-circle me-2"></i> PROFILE</a
+                        >
+                      </li>
+                      <li>
+                        <a class="dropdown-item text-danger fw-bold" href="{{ route('user.logout')}}"
+                          ><i class="bi bi-person-circle me-2"></i> LOGOUT</a
+                        >
+                      </li>
+                    </ul>
                   </div>
+               </div>
+            @endguest
             </div>
       </nav>
       @yield('content')

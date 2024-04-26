@@ -150,7 +150,9 @@ nav.stroke ul li a,
 nav.fill ul li a {
     position: relative;
 }
-
+.navbar-brand {
+    margin-left: 360px;
+}
 /* nav.stroke ul li a:after,
 nav.fill ul li a:after {
     position: absolute;

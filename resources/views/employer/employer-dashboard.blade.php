@@ -18,13 +18,6 @@
    </div>
 @endsection
 
-@section('nav')
-   <div class="text-white">
-      @auth
-         {{ Auth::user()->name }}
-      @endauth
-   </div>
-@endsection
 @include('partials.navbar-dashboard-admin')
 <div class="d-flex dashboard-content">
    <div class="left w-25 h-100 mt-5">

@@ -1,7 +1,21 @@
-<nav class="navbar bg-dark sticky-top shadow-sm p-3 navbar-expand-lg stroke">
+<nav class="navbar bg-dark shadow-sm p-3 navbar-expand-lg stroke">
       <div class="container">
-            <a class="navbar-brand fw-bold" href="/" style="color: #8CB9BD;">Ayo Kerja</a>
             @yield('nav-link-employer')
-            @yield('nav')
+
+            <div class="btn-group">
+                  <button class="btn btn-sm btn-secondary dropdown-toggle pe-4 ps-4 pt-2 pb-2 fw-bold" data-bs-toggle="dropdown"
+                    aria-expanded="false" style="border: 2px solid; border-color: #8CB9BD;" type="button">
+                      @auth
+                      {{ Auth::user()->name }}
+                      @endauth
+                  </button>
+                  <ul class="dropdown-menu">
+                    <li>
+                      <a class="dropdown-item text-danger fw-bold" href="{{ route('employe-logout')}}"
+                        ><i class="bi bi-person-circle me-2"></i> LOGOUT</a
+                      >
+                    </li>
+                  </ul>
+            </div>
       </div>
 </nav>
