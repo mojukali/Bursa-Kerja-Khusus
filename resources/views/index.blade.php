@@ -27,7 +27,7 @@
             </form>
             <div class="row d-flex justify-content-center mt-5">
                   <div class="col-xl-4 col-md-4 col-sm-12">
-                     <div class="card card-stats mb-4 mb-xl-0 bg-dark text-light">
+                     <div class="card card-stats mb-4 mb-xl-0 text-light" style="background-color:#3d216f;">
                       <div class="card-body">
                         <div class="row">
                           <div class="col">
@@ -47,7 +47,7 @@
                     </div>
                   </div>
                   <div class="col-xl-4 col-md-4 col-sm-12">
-               <div class="card card-stats mb-4 mb-xl-0 bg-dark text-light">
+               <div class="card card-stats mb-4 mb-xl-0 text-light" style="background-color:#3d216f;">
                 <div class="card-body">
                   <div class="row">
                     <div class="col">
@@ -68,7 +68,7 @@
             </div>
 
             <div class="col-xl-4 col-md-4 col-sm-12">
-               <div class="card card-stats mb-4 mb-xl-0 bg-dark text-light">
+               <div class="card card-stats mb-4 mb-xl-0 text-light" style="background-color:#3d216f;">
                 <div class="card-body">
                   <div class="row">
                     <div class="col">

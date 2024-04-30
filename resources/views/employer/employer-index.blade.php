@@ -82,7 +82,7 @@
             <!-- LOKER -->
          <div class="col-6 mt-3 mb-3">
             <h3 class="text-center fw-bold mt-1 mb-5">LOKER TERSEDIA</h3>
-            <div class="row">
+            <div style="max-height: 400px" class="row overflow-auto">
                   <div class="col">
                         @foreach ($dataE->loker as $item)
                         <div class="card w-full border border-2" style="font-size: 14px">

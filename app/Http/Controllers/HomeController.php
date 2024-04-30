@@ -30,9 +30,9 @@ class HomeController extends Controller
             $data = Loker::all();
             $dataU = User::role('user')->get();
 
-            $title = 'Delete User!';
-        $text = "Are you sure you want to delete?";
-        confirmDelete($title, $text);
+            // $title = 'Delete User!';
+            // $text = "Are you sure you want to delete?";
+            // confirmDelete($title, $text);
 
             $role = Role::where('guard_name','employe')->get();
             return view('admin.dashboard-admin', compact('employE','employe','user','loker','data','dataU','dataE','role','chartUser'));
