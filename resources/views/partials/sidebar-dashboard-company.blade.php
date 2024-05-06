@@ -1,14 +1,14 @@
 <div class="vstack gap-0 text-light">
       <div role="tablist" id="list-tab">
             <div class="px-3 sidebar text-light">
-                  <h3 class="text-center text-light text-decoration-underline">
+                  <h3 class="text-center text-light" style="font-family: 'Bai Jamjuree', sans-serif;font-weight: 400;">
                         AyoKerja!!!
                   </h3>
                   <hr>
             <a href="#list-dashboard" id="list-dashboard-list" data-bs-toggle="list" role="tab" aria-controls="list-dashboard" class="list-group-item list-group-item-action active link-underline link-underline-opacity-0 text-dark nav-link-sidebar initialColor colorLink" data-page="page1">
                   <div class="p-2 ps-4">
                         <div class="d-flex menu-sidebar align-items-center text-light">
-                              <i class="bi bi-columns-gap text-light"></i>
+                              <i class="bi bi-houses-fill text-light"></i>
                               DASHBOARD
                         </div>
                   </div>

@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=Bai+Jamjuree:wght@400;500;600;700&display=swap");
+
 :root {
     --primary: #000000;
     --secondary: rgb(71, 71, 71);
@@ -275,8 +277,8 @@ nav.stroke ul li a {
 }
 
 .img-profile-user {
-    width: 150px;
-    height: 150px;
+    width: 250px;
+    height: 250px;
 }
 
 .history-apply-user {
@@ -439,11 +441,13 @@ body {
         from(#f29263),
         to(#ee5a6f)
     );
-    background: linear-gradient(to right, #ee5a6f, #f29263);
+    background: linear-gradient(to right, #3d216f, #8521ca);
 }
 
 .user-profile {
-    padding: 20px 0;
+    padding: 20px;
+    border-radius: 1rem;
+    max-height: 33rem;
 }
 
 .card-block {

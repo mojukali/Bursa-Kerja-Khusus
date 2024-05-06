@@ -3,7 +3,7 @@
 <head>
       <meta charset="UTF-8" />
       <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-      <title>Document</title>
+      <title>Ayo Kerja</title>
       <link rel="website icon" type="jpg" href="../../../img/jobseeker-bg-darkblue.jpg">
       <link rel="stylesheet" href="../../../bootstrap/css/bootstrap.min.css" />
       <link rel="stylesheet" href="../../../css/style.css" />
@@ -60,44 +60,64 @@
       </script>
       <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
       <script>
-            var ctx = document.getElementById("doughutChart");
+            var ctx = document.getElementById("pieChart");
             ctx.height = 150;
             var user = {!! $user !!};
             var employer = {!! $employe !!};
             var loker = {!! $loker !!};
-            var total = user + employer + loker;
-            var userPercen = (user / total) * 100;
-            var employerPercen = (employer / total) * 100;
-            var lokerPercen = (loker / total) * 100;
         
             var myChart = new Chart(ctx, {
-                type: 'doughnut',
+                type: 'pie',
                 data: {
-                    datasets: [{
-                        data: [user, employer, loker],
-                        backgroundColor: [
-                            "#070f2b",
-                            "#1b1a55",
-                            "#ffee00"
-                        ],
-                        hoverBackgroundColor: [
-                            "#070f2b",
-                            "#1b1a55",
-                            "#ffee00"
-                        ]
-                    }],
-                    labels: [
-                        "User" + " " + userPercen.toFixed(2) + "%",
-                        "Employer" + " " + employerPercen.toFixed(2) + "%",
-                        "Loker" + " " + lokerPercen.toFixed(2) + "%"
-                    ]
+                  datasets: [{
+                      label:"Data Tersimpan ",
+                      data: [user, employer, loker],
+                      backgroundColor: [
+                        "#3d216f",
+                        "#8521ca",
+                        "#8e54d7"
+                      ]
+                  }],
+                  labels: [
+                      "User" + " ",
+                      "Employer" + " ",
+                      "Loker" + " "
+                  ]
                 },
                 options: {
                     responsive: true
                 }
             });
-        </script>
+      </script>
+      <script>
+            var ctx = document.getElementById("polarArea");
+            ctx.height = 150;
+            var user = {!! $user !!};
+            var employer = {!! $employe !!};
+            var loker = {!! $loker !!};
         
-
+            var myChart = new Chart(ctx, {
+                type: 'doughnut',
+                data: {
+                  datasets: [{
+                      label:"Data Tersimpan ",
+                      data: [user, employer, loker],
+                      backgroundColor: [
+                        "#3d216f",
+                        "#8521ca",
+                        "#8e54d7"
+                      ]
+                  }],
+                  labels: [
+                      "User" + " ",
+                      "Employer" + " ",
+                      "Loker" + " "
+                  ]
+                },
+                options: {
+                    responsive: true
+                }
+            });
+      </script>
 </body>
 </html>

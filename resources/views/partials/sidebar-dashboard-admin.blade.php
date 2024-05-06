@@ -1,14 +1,14 @@
 <div class="vstack gap-0">
       <div role="tablist" id="list-tab">
             <div class="px-3 sidebar text-light">
-                  <h3 class="text-center text-light text-decoration-underline">
+                  <h3 class="text-center text-light" style="font-family: 'Bai Jamjuree', sans-serif;font-weight: 400;">
                         AyoKerja!!!
                   </h3>
                   <hr>
             <a href="#list-home" id="list-home-list" data-bs-toggle="list" href="#list-home" role="tab" aria-controls="list-home" class="list-group-item list-group-item-action active link-underline link-underline-opacity-0 text-dark nav-link-sidebar initialColor colorLink" data-page="page1">
                   <div class="p-2 ps-4">
                         <div class="d-flex text-light menu-sidebar align-items-center">
-                              <i class="bi bi-columns-gap text-light"></i>
+                              <i class="bi bi-houses-fill text-light "></i>
                               DASHBOARD
                         </div>
                   </div>
@@ -16,7 +16,7 @@
             <a href="#list-loker" id="list-loker-list" data-bs-toggle="list" role="tab" aria-controls="list-loker" class="list-group-item list-group-item-action link-underline link-underline-opacity-0 text-dark nav-link-sidebar initialColor colorLink" data-page="page1">
                   <div class="p-2 ps-4">
                         <div class="d-flex text-light menu-sidebar align-items-center">
-                              <i class="bi bi-columns-gap text-light"></i>
+                              <i class="bi bi-buildings-fill text-light"></i>
                               PERUSAHAAN
                         </div>
                   </div>
@@ -24,7 +24,7 @@
             <a href="#list-verif" id="list-loker-list" data-bs-toggle="list" role="tab" aria-controls="list-loker" class="list-group-item list-group-item-action link-underline link-underline-opacity-0 text-dark nav-link-sidebar initialColor colorLink" data-page="page1">
                   <div class="p-2 ps-4">
                         <div class="d-flex text-light menu-sidebar align-items-center">
-                              <i class="bi bi-columns-gap text-light"></i>
+                              <i class="bi bi-file-earmark-check-fill text-light"></i>
                               VERIFIKASI
                         </div>
                   </div>
@@ -32,7 +32,7 @@
             <a href="#list-apply" id="list-apply-list" data-bs-toggle="list" role="tab" aria-controls="list-apply" class="list-group-item list-group-item-action link-underline link-underline-opacity-0 text-dark nav-link-sidebar initialColor colorLink" data-page="page1">
                   <div class="p-2 ps-4">
                         <div class="d-flex text-light menu-sidebar align-items-center">
-                              <i class="bi bi-columns-gap text-light"></i>
+                              <i class="bi bi-person-circle text-light"></i>
                               USER
                         </div>
                   </div>
@@ -40,7 +40,7 @@
             <a href="#list-candidat" id="list-candidat-list" data-bs-toggle="list" role="tab" aria-controls="list-candidat" class="list-group-item list-group-item-action link-underline link-underline-opacity-0 text-dark nav-link-sidebar initialColor colorLink" data-page="page1">
                   <div class="p-2 ps-4">
                         <div class="d-flex text-light menu-sidebar align-items-center">
-                              <i class="bi bi-columns-gap text-light"></i>
+                              <i class="bi bi-briefcase-fill text-light"></i>
                               LOKER
                         </div>
                   </div>
