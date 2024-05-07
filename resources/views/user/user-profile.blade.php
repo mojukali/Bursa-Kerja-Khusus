@@ -3,184 +3,151 @@
 <body class="bg-body-tertiary">
       <div class="container pt-5">
             <div class="row">
-                  <div class="col-xl-8 col-md-12 col-sm-12">
-                        <div class="card bg-white mb-3">
-                              <div class="card-body ps-4">
-                                    <div class="card-intro d-flex gap-4">
-                                          <div class="d-flex profile-picture">
-                                                @if ($dataU->profile_user->image)
-                                                <a href="" data-bs-toggle="modal" data-bs-target="#detailphoto">
-                                                      <img src="{{ asset('storage/photo-user/'.$dataU->profile_user->image)}}" alt="" class="rounded-pill ratio ratio-1x1 img-profile-user">
-                                                </a>
-                                                @else
-                                                @if ($dataU->profile_user->jk === 'she/her')
-                                                <a href="" data-bs-toggle="modal" data-bs-target="#detailphoto">
-                                                      <img src="{{ asset('../../img/person-default-female.jpg')}}" alt="" class="rounded-pill ratio ratio-1x1 img-profile-user">
-                                                </a>
-                                                @else
-                                                <a href="" data-bs-toggle="modal" data-bs-target="#detailphoto">
-                                                      <img src="{{ asset('../../img/person-default.jpg')}}" alt="" class="rounded-pill ratio ratio-1x1 img-profile-user">
-                                                </a>
-                                                @endif
-                                                @endif
-
-                                                @if($user = 'user')
-                                                <div class="d-flex align-items-end z-3">
-                                                      <div class="d-flex align-items-center justify-content-center bg-white rounded-pill" style="margin-left: -2.3rem; margin-bottom: 10px;">
-                                                            <div class="d-flex align-items-center justify-content-center border bg-primary rounded-pill" style="width: 32px; height: 32px; margin: 2px;">
-                                                                  <a href="" class="text-white" style="font-size: 20px;" data-bs-toggle="modal" data-bs-target="#photo"><i class="bi bi-arrow-repeat"></i></a>
+                  <!-- kiri -->
+                  <div class="row m-l-0 m-r-0">
+                    <div class="col-sm-4 bg-c-lite-green user-profile">
+                        <div class="card-block text-center text-white">
+                        <h6 class="fs-3 mb-4">{{$dataU->name}}<div class="fw-light text-light" style="font-size: 12px">({{$dataU->profile_user->jk}})</div></h6>
+                            <div class="m-b-25">
+                              @if ($dataU->profile_user->image)
+                              <a href="" data-bs-toggle="modal" data-bs-target="#detailphoto">
+                                    <img src="{{ asset('storage/photo-user/'.$dataU->profile_user->image)}}" alt="" class="rounded-3 img-profile-user border border-2">
+                              </a>
+                              @else
+                              @if ($dataU->profile_user->jk === 'she/her')
+                              <a href="" data-bs-toggle="modal" data-bs-target="#detailphoto">
+                                    <img src="{{ asset('../../img/person-default-female.jpg')}}" alt="" class="rounded-3 img-profile-user border border-2">
+                              </a>
+                              @else
+                              <a href="" data-bs-toggle="modal" data-bs-target="#detailphoto">
+                                    <img src="{{ asset('../../img/person-default.jpg')}}" alt="" class="rounded-3 img-profile-user border border-2">
+                              </a>
+                              @endif
+                              @endif
+                              <div class="small font-italic mb-4 mt-2">Use an JPG or PNG with a ratio of 1x1.</div>
+                              <button class="btn btn-primary mb-0 mt-3" data-bs-toggle="modal" data-bs-target="#photo" type="button">Upload new image</button>
+                              <div class="modal fade" id="photo" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog modal-dialog-centered">
+                                          <form action="{{route('user.photo-profile',['id' =>$dataU->id])}}" method="POST" enctype="multipart/form-data">
+                                                @csrf
+                                                @method('PUT')
+                                                <div class="modal-content">
+                                                      <div class="modal-header">
+                                                            <h1 class="modal-title fs-5" id="exampleModalLabel">Photo Profile</h1>
+                                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                      </div>
+                                                      <div class="modal-body">
+                                                            <div class="mb-3">
+                                                                  <input class="form-control" name="photo" type="file" id="formFile">
                                                             </div>
                                                       </div>
-                                                </div>
-                                                <div class="modal fade" id="photo" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                                      <div class="modal-dialog modal-dialog-centered">
-                                                            <form action="{{route('user.photo-profile',['id' =>$dataU->id])}}" method="POST" enctype="multipart/form-data">
-                                                                  @csrf
-                                                                  @method('PUT')
-                                                                  <div class="modal-content">
-                                                                        <div class="modal-header">
-                                                                              <h1 class="modal-title fs-5" id="exampleModalLabel">Photo Profile</h1>
-                                                                              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                                                        </div>
-                                                                        <div class="modal-body">
-                                                                              <div class="mb-3">
-                                                                                    <input class="form-control" name="photo" type="file" id="formFile">
-                                                                              </div>
-                                                                        </div>
-                                                                        <div class="modal-footer">
-                                                                              <button type="button" class="btn btn-secondary rounded-pill" data-bs-dismiss="modal">Close</button>
-                                                                              <button type="submit" class="btn btn-primary rounded-pill">Save changes</button>
-                                                                        </div>
-                                                                  </div>
-                                                            </form>
+                                                      <div class="modal-footer">
+                                                            <button type="button" class="btn btn-secondary rounded-pill" data-bs-dismiss="modal">Close</button>
+                                                            <button type="submit" class="btn btn-primary rounded-pill">Save changes</button>
                                                       </div>
                                                 </div>
-                                                @else
-                                                <div>
-                                                </div>
-                                                @endif
+                                          </form>
+                                    </div>
+                              </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-8 grid">
+                        <div class="card-block">
+                            <h6 class="m-b-20 p-b-5 b-b-default f-w-600">Information</h6>
+                            <div class="row">
+                                <div class="col-sm-6 col-lg-5 ms-3 me-5 border border-2 border-dark mb-2 p-2">
+                                    <p class="m-b-10 f-w-600"><i class="bi bi-card-heading"></i> NISN</p>
+                                    <h6 class="text-muted f-w-400">{{$dataU->nisn}}</h6>
+                                </div>
+                                <div class="col-sm-6 col-lg-5 ms-5 border border-2 border-dark mb-2 p-2">
+                                    <p class="m-b-10 f-w-600"><i class="bi bi-telephone"></i> Phone</p>
+                                    <h6 class="text-muted f-w-400">{{$dataU->profile_user->no_telp}}
+                                          @if ($user = 'user')
+                                          <a href="" data-bs-target="#exampleModalToggle2" data-bs-toggle="modal" class="ms-auto"><i class="bi bi-pen text-secondary"></i></a>
+                                          @endif
+                                    </h6>
+                                </div>
+                            </div>
+                              <div class="row">
+                                    <div class="col-sm-6 col-lg-5 ms-3 me-5 border border-2 border-dark p-2">
+                                    <p class="m-b-10 f-w-600"><i class="bi bi-geo-alt"></i> Lokasi</p>
+                                    <h6 class="text-muted f-w-400">{{$dataU->profile_user->kota}},{{$dataU->profile_user->provinsi}}
+                                          @if($user = 'user')
+                                          <a href="" data-bs-toggle="modal" data-bs-target="#provinsiUser"><i class="bi bi-pen text-secondary"></i></a>
+                                          @endif
+                                    </h6>
+                                    <div class="modal fade" id="provinsiUser" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                          <div class="modal-dialog">
+                                                <form action="{{ route('user.update-provinsi', ['id' => $dataU->id])}}" method="POST">
+                                                      @csrf
+                                                      @method('PUT')
+                                                      <div class="modal-content">
+                                                            <div class="modal-header">
+                                                                  <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+                                                                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                            </div>
+                                                            <div class="modal-body">
+                                                                  <div class="d-flex gap-3">
+                                                                        <select class="form-select py-3" aria-label="Default select example" id="provinsi" name="provinsi" onclick="loadProvinsi()">
+                                                                              <option value="">Pilih Provinsi Anda</option>
+                                                                        </select>
+                                                                  </div>
+                                                            </div>
+                                                            <div class="modal-body">
+                                                                  <div class="d-flex gap-3">
+                                                                        <select class="form-select py-3" aria-label="Default select example" id="kota_kabupaten" name="kota" onclick="loadKotaKabupaten()">
+                                                                              <option value="">Pilih Provinsi Terlebih Dahulu</option>
+                                                                        </select>
+                                                                  </div>
+                                                            </div>
+                                                            <div class="modal-footer">
+                                                                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                                                  <button type="submit" class="btn btn-primary">Save changes</button>
+                                                            </div>
+                                                      </div>
+                                                </form>
                                           </div>
-                                          <div>
-                                                <div class="d-flex gap-2 align-items-center">
-                                                      <div class="fw-semibold text-black fs-5">{{$dataU->name}}</div>
-                                                      <div class="fw-light text-secondary" style="font-size: 12px">({{$dataU->profile_user->jk}})</div>
-                                                </div>
-                                                <div class="text-dark text-secondary" style="font-size: 13px">{{$dataU->nisn}}</div>
-                                                <div class="d-flex gap-2" style="font-size: 13px">
-                                                      <div class="text-secondary" id="myText">{{$dataU->profile_user->kota}},</div>
-                                                      <div class="text-secondary">{{$dataU->profile_user->provinsi}}</div>
-                                                      @if($user = 'user')
-                                                      <div class=""><a href="" data-bs-toggle="modal" data-bs-target="#provinsiUser"><i class="bi bi-pen text-secondary"></i></a></div>
-                                                      @endif
-                                                </div>
-                                                <div class="modal fade" id="provinsiUser" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                                      <div class="modal-dialog">
-                                                            <form action="{{ route('user.update-provinsi', ['id' => $dataU->id])}}" method="POST">
-                                                                  @csrf
-                                                                  @method('PUT')
-                                                                  <div class="modal-content">
-                                                                        <div class="modal-header">
-                                                                              <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
-                                                                              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                                                        </div>
-                                                                        <div class="modal-body">
-                                                                              <div class="d-flex gap-3">
-                                                                                    <select class="form-select py-3" aria-label="Default select example" id="provinsi" name="provinsi" onclick="loadProvinsi()">
-                                                                                          <option value="">Pilih Provinsi Anda</option>
-                                                                                    </select>
-                                                                              </div>
-                                                                        </div>
-                                                                        <div class="modal-body">
-                                                                              <div class="d-flex gap-3">
-                                                                                    <select class="form-select py-3" aria-label="Default select example" id="kota_kabupaten" name="kota" onclick="loadKotaKabupaten()">
-                                                                                          <option value="">Pilih Provinsi Terlebih Dahulu</option>
-                                                                                    </select>
-                                                                              </div>
-                                                                        </div>
-                                                                        <div class="modal-footer">
-                                                                              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                                                              <button type="submit" class="btn btn-primary">Save changes</button>
-                                                                        </div>
+                                    </div>
+                              </div>
+                              <div class="col-sm-6 col-lg-5 ms-5 border border-2 border-dark p-2">
+                                  <p class="m-b-10 f-w-600"><i class="bi bi-box-arrow-in-down"></i> Email</p>
+                                  <h6 class="text-muted f-w-400">{{$dataU->profile_user->email}}
+                                          @if ($user = 'user')
+                                          <a href="" data-bs-target="#exampleModalToggle2" data-bs-toggle="modal" class="ms-auto"><i class="bi bi-pen text-secondary"></i></a>
+                                          @endif
+                                  </h6>
+                                    <div class="modal fade" id="exampleModalToggle2" aria-hidden="true" aria-labelledby="exampleModalToggleLabel2" tabindex="-1">
+                                          <div class="modal-dialog">
+                                                <form action="{{ route('user.update-contact', ['id' => $dataU->id])}}" method="POST">
+                                                      @csrf
+                                                      @method('PUT')
+                                                      <div class="modal-content">
+                                                            <div class="modal-header">
+                                                                  <h1 class="modal-title fs-5" id="exampleModalToggleLabel2">Edit info contact</h1>
+                                                                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                            </div>
+                                                            <div class="modal-body px-4">
+                                                                  <div class="mb-3">
+                                                                        <label for="exampleFormControlInput1" class="form-label">Email</label>
+                                                                        <input type="email" name="email" class="form-control" id="exampleFormControlInput1" value="{{$dataU->profile_user->email}}">
                                                                   </div>
-                                                            </form>
-                                                      </div>
-                                                </div>
-                                                <div><a href="" class="link-offset-1 link-underline link-underline-opacity-75" style="font-size: 14px" data-bs-toggle="modal" data-bs-target="#contact">Contact info</a></div>
-                                                <div class="modal fade" id="contact" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                                      <div class="modal-dialog">
-                                                            <div class="modal-content">
-                                                                  <div class="modal-header">
-                                                                        <h1 class="modal-title fs-5" id="exampleModalLabel">{{$dataU->name}}</h1>
-                                                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                                                  </div>
-                                                                  <div class="modal-body px-4">
-                                                                        <div class="d-flex">
-                                                                              <div class="mb-3">Contact Info</div>
-                                                                              @if ($user = 'user')
-                                                                              <a href="" data-bs-target="#exampleModalToggle2" data-bs-toggle="modal" class="ms-auto"><i class="bi bi-pen text-secondary"></i></a>
-                                                                              @endif
-                                                                        </div>
-                                                                        <div class="mb-2">
-                                                                              <div class="fw-semibold text-secondary">Email</div>
-                                                                              <small><a href="mailto:{{$dataU->profile_user->email}}" class="link-underline link-underline-opacity-0">{{$dataU->profile_user->email}}</a></small>
-                                                                        </div>
-                                                                        <div class="mb-2">
-                                                                              <div class="fw-semibold text-secondary">No Telephone</div>
-                                                                              <small>{{$dataU->profile_user->no_telp}}</small>
-                                                                        </div>
+                                                                  <div class="mb-3">
+                                                                        <label for="exampleFormControlInput2" class="form-label">No Telp</label>
+                                                                        <input type="text" name="no_telp" class="form-control" id="exampleFormControlInput2" value="{{$dataU->profile_user->no_telp}}">
                                                                   </div>
                                                             </div>
-                                                      </div>
-                                                </div>
-                                                <div class="modal fade" id="exampleModalToggle2" aria-hidden="true" aria-labelledby="exampleModalToggleLabel2" tabindex="-1">
-                                                      <div class="modal-dialog">
-                                                            <form action="{{ route('user.update-contact', ['id' => $dataU->id])}}" method="POST">
-                                                                  @csrf
-                                                                  @method('PUT')
-                                                                  <div class="modal-content">
-                                                                        <div class="modal-header">
-                                                                              <h1 class="modal-title fs-5" id="exampleModalToggleLabel2">Edit info contact</h1>
-                                                                              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                                                        </div>
-                                                                        <div class="modal-body px-4">
-                                                                              <div class="mb-3">
-                                                                                    <label for="exampleFormControlInput1" class="form-label">Email</label>
-                                                                                    <input type="email" name="email" class="form-control" id="exampleFormControlInput1" value="{{$dataU->profile_user->email}}">
-                                                                              </div>
-                                                                              <div class="mb-3">
-                                                                                    <label for="exampleFormControlInput2" class="form-label">No Telp</label>
-                                                                                    <input type="text" name="no_telp" class="form-control" id="exampleFormControlInput2" value="{{$dataU->profile_user->no_telp}}">
-                                                                              </div>
-                                                                        </div>
-                                                                        <div class="modal-footer d-flex gap-2" style="font-size: 12px">
-                                                                              <button class="btn btn-outline-secondary rounded-pill" data-bs-target="#contact" data-bs-toggle="modal">Cancel</button>
-                                                                              <button class="btn btn-primary rounded-pill px-4" type="submit">Save</button>
-                                                                        </div>
-                                                                  </div>
-                                                            </form>
-                                                      </div>
-                                                </div>
-                                                <div class="mt-2 text-secondary" style="font-size: 13px">
-                                                      <div class="d-flex gap-3 align-items-center">
-                                                            <i class="bi bi-envelope"></i>
-                                                            <div class="d-flex gap-1 align-items-center">
-                                                                  <div id="text-to-copy-email">{{$dataU->profile_user->email}}</div>
-                                                                  <a id="copy-link-email" class="email text-secondary" href="#"><i class="bi bi-clipboard"></i></a>
+                                                            <div class="modal-footer d-flex gap-2" style="font-size: 12px">
+                                                                  <button class="btn btn-outline-secondary rounded-pill" data-bs-target="#contact" data-bs-toggle="modal">Cancel</button>
+                                                                  <button class="btn btn-primary rounded-pill px-4" type="submit">Save</button>
                                                             </div>
                                                       </div>
-                                                      <div class="d-flex gap-3 align-items-center">
-                                                            <i class="bi bi-telephone"></i>
-                                                            <div class="d-flex gap-1 align-items-center">
-                                                                  <div id="text-to-copy" hidden>{{$dataU->profile_user->no_telp}}</div>
-                                                                  <div>{{$formattedPhoneNumber = implode('-', str_split($dataU->profile_user->no_telp, 4))}}</div>
-                                                                  <a id="copy-link" class="text-secondary" href="#"><i class="bi bi-clipboard"></i></a>
-                                                            </div>
-                                                      </div>
-                                                </div>
+                                                </form>
                                           </div>
                                     </div>
                               </div>
                         </div>
+                        <div class="overflow-auto mt-4" style="max-height: 284px">
                         {{-- ABOUT --}}
                         <div class="card bg-white mb-3">
                               <div class="card-body pt-4 ps-4">
@@ -554,16 +521,13 @@
                                     @endforeach
                               </div>
                         </div>
-                        {{-- SETTINGS --}}
-                        <div class="card bg-white mb-3">
-                              <div class="card-body pt-4 ps-4">
-                                    <div class="mb-3">
-                                          <div class="fw-semibold">Setting</div>
-                                    </div>
-                                    <div style="font-size: 14px"><a class="text-danger link-underline link-underline-opacity-0" href="{{ route('user.logout')}}">Logout</a></div>
-                              </div>
                         </div>
+                    </div>
                   </div>
+
+                  <!-- kanan -->
+                  <hr class="mt-5">
+                  <div class="row mt-5 mb-5 justify-content-center">
                   <div class="col-xl-4 col-md-12 col-sm-12">
                         <div>
                               <div class="accordion w-100" id="accordionExample">
@@ -636,6 +600,7 @@
                                     </div>
                               </div>
                         </div>
+                  </div>
                   </div>
             </div>
             <div id="copy-feedback">No telephone berhasil disalin!</div>

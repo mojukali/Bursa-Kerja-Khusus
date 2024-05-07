@@ -66,7 +66,6 @@
                 </div>
               </div>
             </div>
-
             <div class="col-xl-4 col-md-4 col-sm-12">
                <div class="card card-stats mb-4 mb-xl-0 text-light" style="background-color:#3d216f;">
                 <div class="card-body">
@@ -87,7 +86,7 @@
                 </div>
               </div>
             </div>
-            </div>
+          </div>
       </div>
 </div>
 

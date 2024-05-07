@@ -31,105 +31,52 @@
             <div class="col">
                   <div class="d-flex gap-2">
                         <div class="fw-semi-bold fs-3 text-dark mb-3">{{$data->nama_pekerjaan}}</div>
-                        <!-- Button trigger modal -->
-                        <a type="button" class="link-underline link-underline-opacity-0 link-underline-opacity-100-hover link-offset-2 pt-2" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                              <i class="bi bi-pen"></i>
-                              edit
-                        </a>
-
-                        <!-- Modal 1-->
-                        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                              <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-lg">
-                                    <div class="modal-content">
-                                          <div class="modal-header">
-                                                <h1 class="modal-title fs-5" id="exampleModalLabel">Edit {{$data->nama_pekerjaan}} </h1>
-                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                          </div>
-                                          <div class="modal-body">
-                                                <div class="mb-3">
-                                                      <label for="exampleFormControlInput1" class="form-label">Bagian</label>
-                                                      <input type="text" class="form-control" id="exampleFormControlInput1" value="{{$data->nama_pekerjaan}}">
-                                                </div>
-                                                <div class="mb-3">
-                                                      <label for="exampleFormControlInput1" class="form-label">Posisi</label>
-                                                      <input type="text" class="form-control" id="exampleFormControlInput1" value="{{ $data->bagian}}">
-                                                </div>
-                                                <div class="mb-3">
-                                                      <label for="exampleFormControlInput1" class="form-label">Lokasi</label>
-                                                      <input type="text" class="form-control" id="exampleFormControlInput1" value="{{ $data->provinsi}} , {{$data->kota_kabupaten}}">
-                                                </div>
-                                                <div class="mb-3">
-                                                      <label for="exampleFormControlInput1" class="form-label">Status</label>
-                                                      <input type="text" class="form-control" id="exampleFormControlInput1" value="{{ $data->waktu}}">
-                                                </div>
-                                                <div class="mb-3">
-                                                      <label for="exampleFormControlInput1" class="form-label">Gaji</label>
-                                                      <input type="text" class="form-control" id="exampleFormControlInput1" value="{{ $data->gaji}}">
-                                                </div>
-                                          </div>
-                                          <div class="modal-footer">
-                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal2">Selanjutnya</button>
-                                          </div>
-                                    </div>
-                              </div>
-                        </div>
-                        {{-- modal 2 --}}
-                        <div class="modal fade" id="exampleModal2" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                              <div class="modal-dialog modal-dialog-centered modal-lg modal-dialog-scrollable">
-                                    <div class="modal-content">
-                                          <div class="modal-header">
-                                                <h1 class="modal-title fs-5" id="exampleModalLabel">Edit Data Analyst</h1>
-                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                          </div>
-                                          <div class="modal-body">
-                                                <div class="mb-3">
-                                                      <label for="exampleFormControlTextarea1" class="form-label">Deskripsi</label>
-                                                      <textarea class="form-control" id="exampleFormControlTextarea1" rows="10">{{$data->deskripsi}}</textarea>
-                                                </div>
-                                                <div class="mb-3">
-                                                      <label for="exampleFormControlTextarea1" class="form-label">Persyaratan</label>
-                                                      <textarea class="form-control" id="exampleFormControlTextarea1" rows="10">{{$data->requirement}}</textarea>
-                                                </div>
-                                          </div>
-                                          <div class="modal-footer">
-                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                                <button type="button" class="btn btn-primary">Save changes</button>
-                                          </div>
-                                    </div>
-                              </div>
-                        </div>
                   </div>
-                  <div style="font-size: 14px" class="text-secondary">
-                        <div class="d-flex gap-3 mb-2 align-items-center">
-                              <i class="bi bi-building"></i>
-                              <div>{{ $data->bagian}}</div>
-                        </div>
-                        <div class="d-flex gap-3 mb-2 align-items-center">
-                              <i class="bi bi-geo-alt"></i>
-                              <div>{{ $data->provinsi}} , {{$data->kota_kabupaten}} </div>
-                        </div>
-                        <div class="d-flex gap-3 mb-2 align-items-center">
-                              <i class="bi bi-envelope"></i>
-                              <div>{{ $data->email}}</div>
-                        </div>
-                        <div class="d-flex gap-3 mb-2 align-items-center">
-                              <i class="bi bi-clock"></i>
-                              {{ $data->waktu}}
-                        </div>
-                        <div class="d-flex gap-3 mb-2 align-items-center">
-                              <i class="bi bi-cash-stack"></i>
-                              Rp. {{ $data->gaji}}
+                  <div class="card-block">
+                            <h6 class="m-b-20 p-b-5 b-b-default f-w-600">Informasi Loker</h6>
+                        <div class="row justify-content-center">
+                              <div class="col-sm-6 col-lg-5 ms-3 me-5 border border-2 border-dark mb-2 p-2">
+                                    <p class="m-b-10 f-w-600 fw-bold"><i class="bi bi-card-heading"></i> Bagian</p>
+                                    <h6 class=" f-w-400">{{ $data->bagian}}</h6>
+                              </div>
+                              <div class="col-sm-6 col-lg-5 ms-5 border border-2 border-dark mb-2 p-2">
+                                    <p class="m-b-10 f-w-600 fw-bold"><i class="bi bi-geo-alt"></i> Lokasi</p>
+                                    <h6 class=" f-w-400">{{ $data->provinsi}} , {{$data->kota_kabupaten}}
+                                    </h6>
+                              </div>
+                              <div class="col-sm-6 col-lg-5 ms-3 me-5 border border-2 border-dark p-2">
+                                    <p class="m-b-10 f-w-600 fw-bold"><i class="bi bi-envelope"></i> Email</p>
+                                    <h6 class=" f-w-400">{{ $data->email}}
+                                    </h6>
+                              </div>
+                              <div class="col-sm-6 col-lg-5 ms-5 border border-2 border-dark p-2">
+                                  <p class="m-b-10 f-w-600 fw-bold"><i class="bi bi-alarm"></i> Waktu Kerja</p>
+                                  <h6 class=" f-w-400">{{ $data->waktu}}
+                                  </h6>
+                              </div>
+                              <div class="data-gaji col-sm-6 col-lg-5 border border-2 border-dark p-2">
+                                  <p class="m-b-10 f-w-600 fw-bold"><i class="bi bi-cash-stack"></i> Gaji</p>
+                                  <h6 class=" f-w-400">Rp. {{ $data->gaji}}
+                                  </h6>
+                              </div>
                         </div>
                         <hr>
-                        <div class="modal-jobdesc mb-4">
-                              <div class="title-modal-jobdesc mb-2 fw-bolder">JOB DESCRIPTION</div>
-                              <div class="detail-modal-jobdesc">
-                                    <div>
-                                          {!! nl2br(e($data->deskripsi)) !!}
-                                    </div>
+                        <div class="row card border border-2 border-black">
+                              <div class="card-body">
+                              <div class="fw-bolder mb-4 text-dark">DESKRIPSI PEKERJAAN</div>
+                                    <p class="">
+                                          {{$data->deskripsi}}
+                                    </p>
+                              </div>
+                              <hr>
+                              <div class="fw-bolder mb-4 text-dark">REQUIREMENT PEKERJAAN</div>
+                                    <p class="p-req">
+                                          {{$data->requirement}}
+                                    </p>
+                              </div>
                               </div>
                         </div>
+<<<<<<< HEAD
                         <div class="modal-requirement mb-4">
                               <div class="title-modal-requirement mb-2 fw-bolder">
                                     JOB REQUIREMENT
@@ -173,6 +120,8 @@
                                     </div>
                               </div>
                         </a>
+=======
+>>>>>>> b68a1bb84c58209567d5b1ba99c0386bd906e5a6
                   </div>
             </div>
       </div>

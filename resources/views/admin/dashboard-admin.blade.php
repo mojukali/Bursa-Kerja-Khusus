@@ -22,57 +22,92 @@
             </div>
             <div class="kanan w-75 mt-5">
                   <div class="container content-body" style="width: 1000px">
-                        <div class="d-flex mb-4">
-                              <div class="d-flex justify-content-start gap-3">
-                                    <div class="box bg-white rounded mt-3 ps-3">
-                                          <p class="pt-2">Total User</p>
-                                          <div class="d-flex mt-2 align-items-center text-align-center">
-                                                <i class="bi bi-bar-chart-fill"></i>
-                                                <div class="total text-center">
-                                                      <p>
-                                                            {{$user}}
-                                                      </p>
-                                                </div>
-                                          </div>
-                                    </div>
-                                    <div class="box bg-white rounded mt-3 ps-3">
-                                          <p class="pt-2">Total Perusahaan</p>
-                                          <div class="d-flex mt-2 align-items-center text-align-center">
-                                                <i class="bi bi-bar-chart-fill"></i>
-                                                <div class="total text-center">
-                                                      <p>
-                                                            {{$employe}}
-                                                      </p>
-                                                </div>
-                                          </div>
-                                    </div>
-                                    <div class="box bg-white rounded mt-3 ps-3">
-                                          <p class="pt-2">Total Pekerjaan</p>
-                                          <div class="d-flex mt-2 align-items-center text-align-center">
-                                                <i class="bi bi-bar-chart-fill"></i>
-                                                <div class="total text-center">
-                                                      <p>
-                                                            {{$loker}}
-                                                      </p>
-                                                </div>
-                                          </div>
-                                    </div>
+
+                  <!-- kotakkotak start -->
+                  <div class="row d-flex justify-content-center mt-5 mb-5">
+                        <div class="col-xl-4 col-md-4 col-sm-12">
+                           <div class="card card-stats mb-4 mb-xl-0 text-light" style="background-color:#3d216f;">
+                            <div class="card-body">
+                              <div class="row">
+                                <div class="col">
+                                  <h5 class="card-title text-nowrap mb-0">LOWONGAN PERKERJAAN</h5>
+                                  <span class="h2 font-weight-bold mb-0">{{$loker}}</span>
+                                </div>
+                                <div class="col-auto">
+                                  <div class="">
+
+                                  </div>
+                                </div>
+                              </div>
+                              <p class=" mb-0 text-sm">
+                                <span class="text-nowrap">Since last week</span>
+                              </p>
+                            </div>
+                          </div>
+                        </div>
+
+                        <div class="col-xl-4 col-md-4 col-sm-12">
+                              <div class="card card-stats mb-4 mb-xl-0 text-light" style="background-color:#3d216f;">
+                               <div class="card-body">
+                                 <div class="row">
+                                   <div class="col">
+                                     <h5 class="card-title text-uppercase mb-0">Alumni</h5>
+                                     <span class="h2 font-weight-bold mb-0">{{$user}}</span>
+                                   </div>
+                                   <div class="col-auto">
+                                     <div class="">
+
+                                     </div>
+                                   </div>
+                                 </div>
+                                 <p class=" mb-0    text-sm">
+                                   <span class="text-nowrap">Since last week</span>
+                                 </p>
+                               </div>
                               </div>
                         </div>
-                        <div class="tab-content" id="nav-tabContent">
+
+                        <div class="col-xl-4 col-md-4 col-sm-12">
+                           <div class="card card-stats mb-4 mb-xl-0 text-light" style="background-color:#3d216f;">
+                            <div class="card-body">
+                              <div class="row">
+                                <div class="col">
+                                  <h5 class="card-title text-uppercase mb-0">Perusahaan</h5>
+                                  <span class="h2 font-weight-bold mb-0">{{$employe}}</span>
+                                </div>
+                                <div class="col-auto">
+                                  <div class="">
+
+                                  </div>
+                                </div>
+                              </div>
+                              <p class=" mb-0 text-sm">
+                                <span class="text-nowrap">Since last week</span>
+                              </p>
+                            </div>
+                          </div>
+                        </div>
+                  </div>
+                  <!-- kotakkotak end -->
+
+                        <div class="tab-content ps-3 pe-3" id="nav-tabContent">
+                              <!-- graphic start -->
                               <div class="tab-pane fade show active" id="list-home" role="tabpanel" aria-labelledby="list-home-list">
-                                    <div class="row">
+                                    <div class="row ms-5 ps-3">
                                           <div class="col">
-                                                @include('svg.ilustration-dashboard')
+                                                <div style="width: 300px">
+                                                      <canvas id="polarArea" width="500" height="200"></canvas>
+                                                </div>
                                           </div>
                                           <div class="col">
                                                 <div style="width: 300px">
-                                                      <canvas id="doughutChart" width="500" height="200"></canvas>
+                                                      <canvas id="pieChart" width="500" height="200"></canvas>
                                                 </div>
                                           </div>
                                     </div>
-                                    
                               </div>
+                              <!-- graphic end -->
+
                               <div class="tab-pane fade" id="list-loker" role="tabpanel" aria-labelledby="list-loker-list">
                                     <div class="pe-5">
                                           <table class="table table-striped border" style="width: 950px;">
