@@ -76,7 +76,6 @@
                               </div>
                               </div>
                         </div>
-<<<<<<< HEAD
                         <div class="modal-requirement mb-4">
                               <div class="title-modal-requirement mb-2 fw-bolder">
                                     JOB REQUIREMENT
@@ -120,8 +119,7 @@
                                     </div>
                               </div>
                         </a>
-=======
->>>>>>> b68a1bb84c58209567d5b1ba99c0386bd906e5a6
+
                   </div>
             </div>
       </div>
