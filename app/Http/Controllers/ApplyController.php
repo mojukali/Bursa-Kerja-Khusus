@@ -63,7 +63,6 @@ class ApplyController extends Controller
             'portofolio'          => $filePortofolio,
             'portofolio_online'   => $request->porto,
         ];
-        
         $userId = Auth::id();
         $existingApplication = Apply::where('user_id', $userId)
                                 ->where('loker_id', $id)
@@ -81,8 +80,8 @@ class ApplyController extends Controller
         $user = Auth::user();
         
         $history = Apply::select('id','employes.name as nama_perusahaan', 'lokers.nama_pekerjaan as nama_loker')
-        ->join('users', 'apply.user_id', '=', 'users.id')
-        ->join('lokers', 'apply.loker_id', '=', 'lokers.id')
+        ->join('users', 'applies.user_id', '=', 'users.id')
+        ->join('lokers', 'applies.loker_id', '=', 'lokers.id')
         ->join('employes', 'lokers.employe_id', '=', 'employes.id')
         ->where('users.nisn', $user->nisn)
         ->get();
@@ -128,16 +127,17 @@ class ApplyController extends Controller
         $dataU->load('softskill');
         $dataU->load('hardskill');
         $dataU->load('apply');
-        $history = Apply::select('employes.name as nama_perusahaan', 'employes.image as image', 'lokers.nama_pekerjaan as nama_loker', 'apply.created_at as waktu', 'lokers.id as id', 'apply.id as apply_id')
-        ->join('users', 'apply.user_id', '=', 'users.id')
-        ->join('lokers', 'apply.loker_id', '=', 'lokers.id')
+        $history = Apply::select('employes.name as nama_perusahaan', 'employes.image as image', 'lokers.nama_pekerjaan as nama_loker', 'applies.created_at as waktu', 'lokers.id as id', 'applies.id as apply_id')
+        ->join('users', 'applies.user_id', '=', 'users.id')
+        ->join('lokers', 'applies.loker_id', '=', 'lokers.id')
         ->join('employes', 'lokers.employe_id', '=', 'employes.id')
         ->where('users.nisn', $dataU->nisn)
         ->get();
 
 
-        
     
+    
+
         $user = Apply::where('user_id',$apply)->get();
         return view('employer.employer-candidat',compact('user','dataU'));
 

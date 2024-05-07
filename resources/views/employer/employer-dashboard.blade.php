@@ -145,7 +145,7 @@
                         </tr>
                      </thead>
                      <tbody>
-                        @foreach ($apply as $item)
+                        @foreach ($applies as $item)
                            <tr>
                               <th scope="row">{{ $loop->iteration }}</th>
                               <td>{{ $item->user_name }}</td>

@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Apply;
 use App\Models\Employe;
 use App\Models\loker;
 use App\Models\User;
@@ -14,16 +15,14 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('applies', function (Blueprint $table) {
+        Schema::create('statuses', function (Blueprint $table) {
             $table->id();
             $table->foreignIdFor(User::class)->constrained()->cascadeOnDelete();
-            $table->foreignIdFor(Employe::class)->constrained()->cascadeOnDelete();
             $table->foreignIdFor(loker::class)->constrained()->cascadeOnDelete();
-            $table->string('cv');
-            $table->string('portofolio')->nullable();
-            $table->string('portofolio_online',50)->nullable(); 
-            $table->string('status',3)->nullable();
-            $table->string('surat_interview')->nullable();
+            $table->foreignIdFor(Apply::class)->constrained()->cascadeOnDelete();
+            $table->foreignIdFor(Employe::class)->constrained()->cascadeOnDelete();
+            $table->string('status');
+            $table->string('surat_interview');
             $table->timestamps();
         });
     }
@@ -33,6 +32,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('applies');
+        Schema::dropIfExists('statuses');
     }
 };

@@ -18,11 +18,11 @@ class Apply extends Model
         'cv',
         'portofolio',
         'portofolio_online',
-        'status'
+        'surat_interview',
+        'status',
     ];
     
-    protected $table = 'apply';
-    
+    protected $table = 'applies';
 
     public function loker()
     {

@@ -153,79 +153,11 @@
                                                       <img src="../../img/bg_iu.jpg" width="70px" height="70px" class="rounded" alt="">
                                                 </div>
                                                 <div>
-                                                      <div class="fw-semibold text-secondary">Krisna Saputra</div>
-                                                      <div class="mt-1">
-                                                            <div class="d-flex gap-3 align-items-center text-secondary" style="font-size: 14px">
-                                                                  <i class="bi bi-envelope"></i>
-                                                                  <div>Krisnasptr@gmail.com</div>
-                                                            </div>
-                                                            <div class="d-flex gap-3 align-items-center text-secondary" style="font-size: 14px">
-                                                                  <i class="bi bi-telephone"></i>
-                                                                  <div>0897-9142-4031</div>
-                                                            </div>
-                                                      </div>
-                                                </div>
-                                          </div>
-                                    </div>
-                              </div>
-                        </a>
-                        <a href="/view/loker-edit/kode-loker/kode-candidat" class="link-underline link-underline-opacity-0">
-                              <div class="card mb-3">
-                                    <div class="card-body">
-                                          <div class="d-flex gap-3">
-                                                <div>
-                                                      <img src="../../img/bg_iu.jpg" width="70px" height="70px" class="rounded" alt="">
-                                                </div>
-                                                <div>
-                                                      <div class="fw-semibold text-secondary">Krisna Saputra</div>
-                                                      <div class="mt-1">
-                                                            <div class="d-flex gap-3 align-items-center text-secondary" style="font-size: 14px">
-                                                                  <i class="bi bi-envelope"></i>
-                                                                  <div>Krisnasptr@gmail.com</div>
-                                                            </div>
-                                                            <div class="d-flex gap-3 align-items-center text-secondary" style="font-size: 14px">
-                                                                  <i class="bi bi-telephone"></i>
-                                                                  <div>0897-9142-4031</div>
-                                                            </div>
-                                                      </div>
-                                                </div>
-                                          </div>
-                                    </div>
-                              </div>
-                        </a>
-                        <a href="/view/loker-edit/kode-loker/kode-candidat" class="link-underline link-underline-opacity-0">
-                              <div class="card mb-3">
-                                    <div class="card-body">
-                                          <div class="d-flex gap-3">
-                                                <div>
-                                                      <img src="../../img/bg_iu.jpg" width="70px" height="70px" class="rounded" alt="">
-                                                </div>
-                                                <div>
-                                                      <div class="fw-semibold text-secondary">Krisna Saputra</div>
-                                                      <div class="mt-1">
-                                                            <div class="d-flex gap-3 align-items-center text-secondary" style="font-size: 14px">
-                                                                  <i class="bi bi-envelope"></i>
-                                                                  <div>Krisnasptr@gmail.com</div>
-                                                            </div>
-                                                            <div class="d-flex gap-3 align-items-center text-secondary" style="font-size: 14px">
-                                                                  <i class="bi bi-telephone"></i>
-                                                                  <div>0897-9142-4031</div>
-                                                            </div>
-                                                      </div>
-                                                </div>
-                                          </div>
-                                    </div>
-                              </div>
-                        </a>
-                        <a href="/view/loker-edit/kode-loker/kode-candidat" class="link-underline link-underline-opacity-0">
-                              <div class="card mb-3">
-                                    <div class="card-body">
-                                          <div class="d-flex gap-3">
-                                                <div>
-                                                      <img src="../../img/bg_iu.jpg" width="70px" height="70px" class="rounded" alt="">
-                                                </div>
-                                                <div>
-                                                      <div class="fw-semibold text-secondary">Krisna Saputra</div>
+                                                      @if($data->image)
+                                                            <img src="{{ asset('storage/photo-employe/'.$data->image)}}" alt="">
+                                                      @else
+                                                            <img src="{{ asset('../../assets/images/building.jpg') }}" alt="Default Image">
+                                                      @endif
                                                       <div class="mt-1">
                                                             <div class="d-flex gap-3 align-items-center text-secondary" style="font-size: 14px">
                                                                   <i class="bi bi-envelope"></i>

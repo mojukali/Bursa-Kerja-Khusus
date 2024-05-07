@@ -81,7 +81,7 @@ class LoginController extends Controller
             $data['lokasi']     = $request->lokasi;
             $data['no_telp']    = $request->no_telp;
             $data['deskripsi']  = $request->deskripsi;
-
+            
             $user = Employe::create($data);
 
             $user->syncRoles(['new_account']);

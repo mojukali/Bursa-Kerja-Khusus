@@ -17,12 +17,12 @@ class UserSeeder extends Seeder
     {
         User::create([
             'nisn'      => '001',
-            'name'      => 'admin',
+            'name'      => 'El Togar',
             'password'  => 'admin',
         ]);
         User::create([
             'nisn'      => '002',
-            'name'      => 'user',
+            'name'      => 'El Gembul',
             'password'  => 'user',
         ]);
         ProfileUser::create([
