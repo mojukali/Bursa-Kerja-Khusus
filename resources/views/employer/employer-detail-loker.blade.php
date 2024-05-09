@@ -26,6 +26,8 @@
 
 @include('partials.navbar-dashboard-admin')
 @section('content-admin')
+
+
 <div class="container">
       <div class="row mt-5">
             <div class="col">
@@ -76,7 +78,7 @@
                               </div>
                               </div>
                         </div>
-                        <div class="modal-requirement mb-4">
+                        {{-- <div class="modal-requirement mb-4">
                               <div class="title-modal-requirement mb-2 fw-bolder">
                                     JOB REQUIREMENT
                               </div>
@@ -85,33 +87,44 @@
                                           {!! nl2br(e($data->requirement)) !!}
                                     </div>
                               </div>
-                        </div>
+                        </div> --}}
                   </div>
             </div>
             <div class="col">
                   <div class="fw-bolder text-secondary fs-4 text-center bg-body-tertiary mb-3">Kandidat</div>
                   <div style="max-height: 400px" class="overflow-auto">
-                        <a href="/view/loker-edit/kode-loker/kode-candidat" class="link-underline link-underline-opacity-0">
+                        @foreach ($showUsers as $item)
+                        {{-- <a href="/view/loker-edit/kode-loker/kode-candidat" class="link-underline link-underline-opacity-0"> --}}
+                              <a href="" class="link-underline link-underline-opacity-0">
                               <div class="card mb-3">
                                     <div class="card-body">
                                           <div class="d-flex gap-3">
                                                 <div>
-                                                      <img src="../../img/bg_iu.jpg" width="70px" height="70px" class="rounded" alt="">
-                                                </div>
-                                                <div>
-                                                      @if($data->image)
-                                                            <img src="{{ asset('storage/photo-employe/'.$data->image)}}" alt="">
+                                                      <div>
+                                                      @if ($showUsers->profile_user->image)
+                                                      <a href="" data-bs-toggle="modal" data-bs-target="#detailphoto">
+                                                            <img src="{{ asset('storage/photo-user/'.$showUsers->profile_user->image)}}" alt="" class="rounded-3 img-profile-user border border-2">
+                                                      </a>
                                                       @else
-                                                            <img src="{{ asset('../../assets/images/building.jpg') }}" alt="Default Image">
+                                                      @if ($showUsers->profile_user->jk === 'she/her')
+                                                      <a href="" data-bs-toggle="modal" data-bs-target="#detailphoto">
+                                                            <img src="{{ asset('../../img/person-default-female.jpg')}}" alt="" class="rounded-3 img-profile-user border border-2">
+                                                      </a>
+                                                      @else
+                                                      <a href="" data-bs-toggle="modal" data-bs-target="#detailphoto">
+                                                            <img src="{{ asset('../../img/person-default.jpg')}}" alt="" class="rounded-3 img-profile-user border border-2">
+                                                      </a>
                                                       @endif
+                                                      @endif
+                                                        </div>
                                                       <div class="mt-1">
                                                             <div class="d-flex gap-3 align-items-center text-secondary" style="font-size: 14px">
                                                                   <i class="bi bi-envelope"></i>
-                                                                  <div>Krisnasptr@gmail.com</div>
+                                                                  <div>{{ $item->email }}</div>
                                                             </div>
                                                             <div class="d-flex gap-3 align-items-center text-secondary" style="font-size: 14px">
                                                                   <i class="bi bi-telephone"></i>
-                                                                  <div>0897-9142-4031</div>
+                                                                  <div>{{ $item->no_telp }}</div>
                                                             </div>
                                                       </div>
                                                 </div>
@@ -119,7 +132,7 @@
                                     </div>
                               </div>
                         </a>
-
+                        @endforeach
                   </div>
             </div>
       </div>
