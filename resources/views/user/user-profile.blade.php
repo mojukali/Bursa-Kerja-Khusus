@@ -1,31 +1,31 @@
 @extends('layouts.app')
 @section('content')
-<body class="bg-body-tertiary">
+<body class="bg-body-secondary">
       <div class="container pt-5">
             <div class="row">
                   <!-- kiri -->
                   <div class="row m-l-0 m-r-0">
-                    <div class="col-sm-4 bg-c-lite-green user-profile">
-                        <div class="card-block text-center text-white">
-                        <h6 class="fs-3 mb-4">{{$dataU->name}}<div class="fw-light text-light" style="font-size: 12px">({{$dataU->profile_user->jk}})</div></h6>
+                    <div class="col-sm-4 bg-white user-profile">
+                        <div class="card-block text-center text-dark">
+                        <h6 class="fs-3 mb-4">{{$dataU->name}}<div class="fw-light text-dark" style="font-size: 12px">({{$dataU->profile_user->jk}})</div></h6>
                             <div class="m-b-25">
                               @if ($dataU->profile_user->image)
                               <a href="" data-bs-toggle="modal" data-bs-target="#detailphoto">
-                                    <img src="{{ asset('storage/photo-user/'.$dataU->profile_user->image)}}" alt="" class="rounded-3 img-profile-user border border-2">
+                                    <img src="{{ asset('storage/photo-user/'.$dataU->profile_user->image)}}" alt="" class="rounded-circle img-profile-user border border-2">
                               </a>
                               @else
                               @if ($dataU->profile_user->jk === 'she/her')
                               <a href="" data-bs-toggle="modal" data-bs-target="#detailphoto">
-                                    <img src="{{ asset('../../img/person-default-female.jpg')}}" alt="" class="rounded-3 img-profile-user border border-2">
+                                    <img src="{{ asset('../../img/person-default-female.jpg')}}" alt="" class="rounded-circle img-profile-user border border-2">
                               </a>
                               @else
                               <a href="" data-bs-toggle="modal" data-bs-target="#detailphoto">
-                                    <img src="{{ asset('../../img/person-default.jpg')}}" alt="" class="rounded-3 img-profile-user border border-2">
+                                    <img src="{{ asset('../../img/person-default.jpg')}}" alt="" class="rounded-circle img-profile-user border border-2">
                               </a>
                               @endif
                               @endif
                               <div class="small font-italic mb-4 mt-2">Use an JPG or PNG with a ratio of 1x1.</div>
-                              <button class="btn btn-primary mb-0 mt-3" data-bs-toggle="modal" data-bs-target="#photo" type="button">Upload new image</button>
+                              <button class="btn btn-primary mb-0 mt-3" data-bs-toggle="modal" data-bs-target="#photo" type="button">Upload New Image</button>
                               <div class="modal fade" id="photo" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                     <div class="modal-dialog modal-dialog-centered">
                                           <form action="{{route('user.photo-profile',['id' =>$dataU->id])}}" method="POST" enctype="multipart/form-data">
@@ -54,13 +54,13 @@
                     </div>
                     <div class="col-sm-8 grid">
                         <div class="card-block">
-                            <h6 class="m-b-20 p-b-5 b-b-default f-w-600">Information</h6>
+                            <h6 class="m-b-20 p-b-5 b-b-default f-w-600">Personal Information</h6>
                             <div class="row">
-                                <div class="col-sm-6 col-lg-5 ms-3 me-5 border border-2 border-dark mb-2 p-2">
+                                <div class="col-sm-6 col-lg-5 ms-3 me-5 bg-white rounded-2 mb-2 p-2">
                                     <p class="m-b-10 f-w-600"><i class="bi bi-card-heading"></i> NISN</p>
                                     <h6 class="text-muted f-w-400">{{$dataU->nisn}}</h6>
                                 </div>
-                                <div class="col-sm-6 col-lg-5 ms-5 border border-2 border-dark mb-2 p-2">
+                                <div class="col-sm-6 col-lg-5 ms-5 bg-white rounded-2 mb-2 p-2">
                                     <p class="m-b-10 f-w-600"><i class="bi bi-telephone"></i> Phone</p>
                                     <h6 class="text-muted f-w-400">{{$dataU->profile_user->no_telp}}
                                           @if ($user = 'user')
@@ -70,7 +70,7 @@
                                 </div>
                             </div>
                               <div class="row">
-                                    <div class="col-sm-6 col-lg-5 ms-3 me-5 border border-2 border-dark p-2">
+                                    <div class="col-sm-6 col-lg-5 ms-3 me-5 bg-white rounded-2 p-2">
                                     <p class="m-b-10 f-w-600"><i class="bi bi-geo-alt"></i> Lokasi</p>
                                     <h6 class="text-muted f-w-400">{{$dataU->profile_user->kota}},{{$dataU->profile_user->provinsi}}
                                           @if($user = 'user')
@@ -110,7 +110,7 @@
                                           </div>
                                     </div>
                               </div>
-                              <div class="col-sm-6 col-lg-5 ms-5 border border-2 border-dark p-2">
+                              <div class="col-sm-6 col-lg-5 ms-5 bg-white rounded-2 p-2">
                                   <p class="m-b-10 f-w-600"><i class="bi bi-box-arrow-in-down"></i> Email</p>
                                   <h6 class="text-muted f-w-400">{{$dataU->profile_user->email}}
                                           @if ($user = 'user')

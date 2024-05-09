@@ -103,7 +103,7 @@
             {{-- Tampilkan data yang ada --}}
             @foreach ($data as $item)
       <div class="col-xl-3 col-md-4 col-sm-12">
-            <div class="card" style="width: 18rem;">
+            <div class="card" style="width: 19rem;">
                   <div class="card-body">
                      <h5 class="card-title">{{$item->nama_pekerjaan}}</h5>
                      <p class="card-text">{{$item->nama_perusahaan}}</p>
