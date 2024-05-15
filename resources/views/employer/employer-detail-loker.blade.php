@@ -37,26 +37,26 @@
                   <div class="card-block">
                             <h6 class="m-b-20 p-b-5 b-b-default f-w-600">Informasi Loker</h6>
                         <div class="row justify-content-center">
-                              <div class="col-sm-6 col-lg-5 ms-3 me-5 border border-2 border-dark mb-2 p-2">
+                              <div class="col-sm-6 col-lg-5 ms-3 me-5 border border-2 border-dark bg-white rounded-2 mb-2 p-2">
                                     <p class="m-b-10 f-w-600 fw-bold"><i class="bi bi-card-heading"></i> Bagian</p>
                                     <h6 class=" f-w-400">{{ $data->bagian}}</h6>
                               </div>
-                              <div class="col-sm-6 col-lg-5 ms-5 border border-2 border-dark mb-2 p-2">
+                              <div class="col-sm-6 col-lg-5 ms-5 border border-2 border-dark bg-white rounded-2 mb-2 p-2">
                                     <p class="m-b-10 f-w-600 fw-bold"><i class="bi bi-geo-alt"></i> Lokasi</p>
                                     <h6 class=" f-w-400">{{ $data->provinsi}} , {{$data->kota_kabupaten}}
                                     </h6>
                               </div>
-                              <div class="col-sm-6 col-lg-5 ms-3 me-5 border border-2 border-dark p-2">
+                              <div class="col-sm-6 col-lg-5 ms-3 me-5 border border-2 border-dark bg-white rounded-2 p-2">
                                     <p class="m-b-10 f-w-600 fw-bold"><i class="bi bi-envelope"></i> Email</p>
                                     <h6 class=" f-w-400">{{ $data->email}}
                                     </h6>
                               </div>
-                              <div class="col-sm-6 col-lg-5 ms-5 border border-2 border-dark p-2">
+                              <div class="col-sm-6 col-lg-5 ms-5 border border-2 border-dark bg-white rounded-2 p-2">
                                   <p class="m-b-10 f-w-600 fw-bold"><i class="bi bi-alarm"></i> Waktu Kerja</p>
                                   <h6 class=" f-w-400">{{ $data->waktu}}
                                   </h6>
                               </div>
-                              <div class="data-gaji col-sm-6 col-lg-5 border border-2 border-dark p-2">
+                              <div class="data-gaji col-sm-6 col-lg-5 border border-2 border-dark bg-white rounded-2 p-2">
                                   <p class="m-b-10 f-w-600 fw-bold"><i class="bi bi-cash-stack"></i> Gaji</p>
                                   <h6 class=" f-w-400">Rp. {{ $data->gaji}}
                                   </h6>

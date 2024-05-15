@@ -43,21 +43,21 @@
                     <h3 class="text-center fw-bold">{{$dataE->name}}</h3>
                     <h6 class="m-b-20 p-b-5 b-b-default f-w-600">Information</h6>
                     <div class="row">
-                        <div class="col-sm-6 border border-2 border-dark mb-2 p-2">
+                        <div class="col-sm-6 border border-2 rounded-2 mb-2 p-2">
                             <p class="m-b-10 f-w-600"><i class="bi bi-envelope"></i> Email</p>
                             <h6 class="text-muted f-w-400">{{$dataE->email}}</h6>
                         </div>
-                        <div class="col-sm-6 border border-2 border-dark mb-2 p-2">
+                        <div class="col-sm-6 border border-2 rounded-2 mb-2 p-2">
                             <p class="m-b-10 f-w-600"><i class="bi bi-telephone"></i> Phone</p>
                             <h6 class="text-muted f-w-400">{{$dataE->no_telp}}</h6>
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-sm-6 border border-2 border-dark p-2">
+                        <div class="col-sm-6 border border-2 rounded-2 p-2">
                             <p class="m-b-10 f-w-600"><i class="bi bi-geo-alt"></i> Lokasi</p>
                             <h6 class="text-muted f-w-400">{{$dataE->lokasi}}</h6>
                         </div>
-                        <div class="col-sm-6 border border-2 border-dark p-2">
+                        <div class="col-sm-6 border border-2 rounded-2 p-2">
                             <p class="m-b-10 f-w-600"><i class="bi bi-box-arrow-in-down"></i> Tanggal Bergabung</p>
                             <h6 class="text-muted f-w-400">Bergabung pada tanggal {{$dataE->created_at->format('d/m/Y')}}</h6>
                         </div>
