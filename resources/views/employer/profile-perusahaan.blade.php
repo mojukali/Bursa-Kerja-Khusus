@@ -25,7 +25,7 @@
                     </div>
                     <div class="col-sm-8 grid">
                         <div class="card-block">
-                            <h6 class="m-b-20 p-b-5 b-b-default f-w-600">Information</h6>
+                            <h6 class="m-b-20 p-b-5 b-b-default f-w-600">Informations</h6>
                             <div class="row">
                                 <div class="col-sm-6 col-lg-5 ms-3 me-5 bg-white text-dark rounded-2 border-2 border mb-2 p-2">
                                     <p class="m-b-10 f-w-600"><i class="bi bi-envelope"></i> Email</p>
